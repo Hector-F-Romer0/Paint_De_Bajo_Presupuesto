@@ -5,7 +5,6 @@
  */
 package ControlGUI;
 
-
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
@@ -56,7 +55,18 @@ public class FXMLDocumentController implements Initializable {
     
     
     @FXML
+    private void crearEstrella(MouseEvent event) {
+    
+    }
+    
+    @FXML
+    private void crearEstrella2(MouseEvent event) {
+    
+    }
+    
+    @FXML
     private void crearHexagono(ActionEvent event) {
+        
         System.out.println("El punto " + coorX + ", " + coorY);
 
         listaPuntos = new LinkedList<>();
@@ -89,31 +99,39 @@ public class FXMLDocumentController implements Initializable {
             Punto2D punto = new Punto2D(x1[i], y1[i]);
             listaPuntos.addLast(punto);
         }
-        // Se crea el polígono
         g.strokePolygon(x1, y1, numLados);
         g.setLineWidth(3);
-        
-        //HOLA
-        
+
     }
     
-//    @FXML
-//    private void crearHeptagono(MouseEvent event) {
-//        
-//        coorX = event.getX();
-//        coorY = event.getY();   
-//        System.out.println("El punto " + coorX + ", " + coorY);
-//    }
+    @FXML
+    private void crearHeptagono(MouseEvent event) {
+    
+    }
+   
+    @FXML
+    private void crearOctagono(MouseEvent event) {
+    
+    }
+    
+    @FXML
+    private void crearDecagono(MouseEvent event) {
+    
+    }
+    
+    @FXML
+    private void crearFlecha(MouseEvent event) {
+    
+    }
    
     @FXML
     private void crearCruz(ActionEvent event) {
+        
         listaPuntos = new LinkedList<>();
         int r = 70;
         g.setStroke(colorRelleno.getValue());
         double v = (0.2*r);
         double w = (0.78*r);
-        
-        // Obtenemos las coordenadas del centro de la circunferencia donde incribiremos la cruz
         double h = coorX;
         double k = coorY;
         x1 = new double[12];
@@ -160,26 +178,28 @@ public class FXMLDocumentController implements Initializable {
             listaPuntos.addLast(punto);
             System.out.println("Coordenada: " + i + "x: " + x1[i] + "y: " + y1[i]);
         }
-        
-        // Se crea el polígono
         g.strokePolygon(x1, y1,12);
         g.setLineWidth(3);
     }
     
     @FXML
+    private void crearPacman(MouseEvent event) {
+    
+    }
+       
+    @FXML
+    private void crearCurva(MouseEvent event) {
+    
+    }
+    
+    @FXML
     private void obtenerCoordenadas(MouseEvent event) { 
+        
         coorX = event.getX();
         coorY = event.getY();   
         System.out.println("El punto " + coorX + ", " + coorY);
     }
-    
-    public void saludar(){
-        System.out.println("Hola");
-        System.out.println("Esto es un segundo pull desde rama1");
-        System.out.println("CALI TU PAPÁ");
-    }
-    
-    
+      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -190,9 +210,7 @@ public class FXMLDocumentController implements Initializable {
 
         g.setStroke(Color.BLACK);
         g.setLineWidth(3);  
-        g.strokeRect(0, 0, largo, alto); 
-        
-        
+        g.strokeRect(0, 0, largo, alto);               
     }    
     
 }

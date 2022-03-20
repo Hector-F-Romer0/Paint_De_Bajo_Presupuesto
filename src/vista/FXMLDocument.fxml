@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.canvas.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControlGUI.FXMLDocumentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="776.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControlGUI.FXMLDocumentController">
    <children>
       <ImageView fx:id="sun_jinwoo" fitHeight="133.0" fitWidth="129.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -19,14 +22,9 @@
       <ColorPicker fx:id="colorMargen" layoutX="39.0" layoutY="229.0" />
       <Pane fx:id="panelFiguras" disable="true" layoutX="9.0" layoutY="261.0" prefHeight="56.0" prefWidth="147.0">
          <children>
-            <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="3.0" layoutY="4.0" onMouseClicked="#crearHexagono" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="31.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../Downloads/405cbf50b27c7a439e4fba3dbd824010.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="31.0" layoutY="4.0" onMouseClicked="#crearHeptagono" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../Downloads/descarga.png" />
+                  <Image url="@../img/hexágono.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="85.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
@@ -58,6 +56,16 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Canvas fx:id="lienzo" height="349.0" layoutX="222.0" layoutY="38.0" width="364.0" />
+      <Canvas fx:id="lienzo" height="478.0" layoutX="222.0" layoutY="38.0" onMouseClicked="#obtenerCoordenadas" width="542.0" />
+      <Button layoutX="22.0" layoutY="342.0" mnemonicParsing="false" onAction="#crearHexagono" prefHeight="31.0" prefWidth="85.0">
+         <graphic>
+            <ImageView fx:id="botonHexagono" fitHeight="22.0" fitWidth="23.0" onMouseClicked="#crearHexagono" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/hexágono.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="135.0" layoutY="335.0" mnemonicParsing="false" onAction="#crearCruz" text="Button" />
    </children>
 </AnchorPane>

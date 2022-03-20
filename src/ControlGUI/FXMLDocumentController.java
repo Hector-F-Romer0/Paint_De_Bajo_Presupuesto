@@ -136,11 +136,69 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void crearOctagono(ActionEvent event) {
     
+        listaPuntos = new LinkedList<>();
+        int r = 40;
+        g.setStroke(colorRelleno.getValue());
+        int numLados = 8;
+        double angulo = (2 * Math.PI)/ numLados;
+        
+        double h = coorX;
+        double k = coorY;
+        x1 = new double[numLados];
+        y1 = new double[numLados];
+        x1[0] = h + r;
+        y1[0] = k;
+     
+        for (int i = numLados - 1; i > 0; i--) {
+            double a = r * Math.sin(angulo * i);
+            double b = r * Math.cos(angulo * i);
+            
+            x1[i] = b + h;
+            y1[i] = a + k;
+        }
+        
+        Punto2D puntoInicial = new Punto2D(x1[0], y1[0]);
+        listaPuntos.add(puntoInicial);
+        for (int i = 1; i < x1.length; i++) {
+            Punto2D punto = new Punto2D(x1[i], y1[i]);
+            listaPuntos.addLast(punto);
+        }
+        g.strokePolygon(x1, y1, numLados);
+        g.setLineWidth(3);
     }
     
     @FXML
     private void crearDecagono(ActionEvent event) {
     
+        listaPuntos = new LinkedList<>();
+        int r = 40;
+        g.setStroke(colorRelleno.getValue());
+        int numLados = 9;
+        double angulo = (2 * Math.PI)/ numLados;
+        
+        double h = coorX;
+        double k = coorY;
+        x1 = new double[numLados];
+        y1 = new double[numLados];
+        x1[0] = h + r;
+        y1[0] = k;
+     
+        for (int i = numLados - 1; i > 0; i--) {
+            double a = r * Math.sin(angulo * i);
+            double b = r * Math.cos(angulo * i);
+            
+            x1[i] = b + h;
+            y1[i] = a + k;
+        }
+        
+        Punto2D puntoInicial = new Punto2D(x1[0], y1[0]);
+        listaPuntos.add(puntoInicial);
+        for (int i = 1; i < x1.length; i++) {
+            Punto2D punto = new Punto2D(x1[i], y1[i]);
+            listaPuntos.addLast(punto);
+        }
+        g.strokePolygon(x1, y1, numLados);
+        g.setLineWidth(3);
     }
     
     @FXML

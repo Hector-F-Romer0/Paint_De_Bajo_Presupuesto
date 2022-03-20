@@ -57,11 +57,58 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void crearEstrella(ActionEvent event) {
     
+        listaPuntos = new LinkedList<>();
+        int r = 100;        
+        double h = coorX;
+        double k = coorY;
+        
+        x1 = new double[10];
+        y1 = new double[10];
+        
+        x1[0] = h;
+        y1[0] = k+r;
+        
+        x1[1] = (0.22*r) + h;
+        y1[1] = (0.31*r) + k;
+        
+        x1[2] = (0.95*r) + h;
+        y1[2] = (0.31*r) + k;
+        
+        x1[3] = (0.36*r) + h;
+        y1[3] = (-0.12*r) + k;
+        
+        x1[4] = (0.59*r) + h;
+        y1[4] = (-0.81*r) + k;
+        
+        x1[5] = h;
+        y1[5] = (-0.38*r) + k;
+        
+        x1[6] = (-0.59*r) + h;
+        y1[6] = (-0.81*r) + k;
+        
+        x1[7] = (-0.36*r) + h;
+        y1[7] = (-0.12*r) + k;
+        
+        x1[8] = (-0.95*r) + h;
+        y1[8] = (0.31*r) + k;
+        
+        x1[9] = (-0.22*r) + h;
+        y1[9] = (0.31*r) + k;
+        
+        for (int i = 0; i < x1.length; i++) {
+            Punto2D punto = new Punto2D(x1[i], y1[i]);
+            listaPuntos.add(punto);
+            System.out.println("Coordenada: " + i + "x: " + x1[i] + "y: " + y1[i]);
+        }  
+        g.setStroke(colorRelleno.getValue());
+        g.setLineWidth(3);
+        g.strokePolygon(x1, y1, 10);
     }
     
     @FXML
     private void crearEstrella2(ActionEvent event) {
     
+        
     }
     
     @FXML
@@ -94,9 +141,8 @@ public class FXMLDocumentController implements Initializable {
             Punto2D punto = new Punto2D(x1[i], y1[i]);
             listaPuntos.addLast(punto);
         }
-        g.strokePolygon(x1, y1, numLados);
         g.setLineWidth(3);
-
+        g.strokePolygon(x1, y1, numLados);
     }
     
     @FXML
@@ -129,8 +175,8 @@ public class FXMLDocumentController implements Initializable {
             Punto2D punto = new Punto2D(x1[i], y1[i]);
             listaPuntos.addLast(punto);
         }
-        g.strokePolygon(x1, y1, numLados);
         g.setLineWidth(3);
+        g.strokePolygon(x1, y1, numLados);
     }
    
     @FXML
@@ -163,8 +209,8 @@ public class FXMLDocumentController implements Initializable {
             Punto2D punto = new Punto2D(x1[i], y1[i]);
             listaPuntos.addLast(punto);
         }
-        g.strokePolygon(x1, y1, numLados);
         g.setLineWidth(3);
+        g.strokePolygon(x1, y1, numLados);
     }
     
     @FXML
@@ -197,13 +243,53 @@ public class FXMLDocumentController implements Initializable {
             Punto2D punto = new Punto2D(x1[i], y1[i]);
             listaPuntos.addLast(punto);
         }
-        g.strokePolygon(x1, y1, numLados);
         g.setLineWidth(3);
+        g.strokePolygon(x1, y1, numLados);
     }
     
     @FXML
     private void crearFlecha(ActionEvent event) {
-    
+           
+        listaPuntos = new LinkedList<>();
+        int r = 100;        
+        double v = (r/4);
+        double w = (r/2);
+        double u = (0.03*r);
+        double h = coorX;
+        double k = coorY;
+        
+        x1 = new double[7];
+        y1 = new double[7];
+        
+        x1[0] = v+h;
+        y1[0] = v+k;
+        
+        x1[1] = v+h;
+        y1[1] = w+k;
+        
+        x1[2] = r+h;
+        y1[2] = k;
+        
+        x1[3] = v+h;
+        y1[3] = -w+k;
+        
+        x1[4] = v+h;
+        y1[4] = -v+k;
+        
+        x1[5] = -r+u+h;
+        y1[5] = -v+k;
+        
+        x1[6] = -r+u+h;
+        y1[6] = v+k;
+        
+        for (int i = 0; i < x1.length; i++) {
+            Punto2D punto = new Punto2D(x1[i], y1[i]);
+            listaPuntos.addLast(punto);
+            System.out.println("Coordenada: " + i + "x: " + x1[i] + "y: " + y1[i]);
+        }  
+        g.setStroke(colorRelleno.getValue());
+        g.setLineWidth(3);
+        g.strokePolygon(x1, y1, 7);
     }
    
     @FXML
@@ -260,18 +346,20 @@ public class FXMLDocumentController implements Initializable {
             listaPuntos.addLast(punto);
             System.out.println("Coordenada: " + i + "x: " + x1[i] + "y: " + y1[i]);
         }
-        g.strokePolygon(x1, y1,12);
         g.setLineWidth(3);
+        g.strokePolygon(x1, y1,12);
     }
     
     @FXML
     private void crearPacman(ActionEvent event) {
     
+        
     }
        
     @FXML
     private void crearCurva(ActionEvent event) {
     
+        
     }
     
     @FXML

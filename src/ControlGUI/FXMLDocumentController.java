@@ -173,6 +173,11 @@ public class FXMLDocumentController implements Initializable {
         System.out.println("El punto " + coorX + ", " + coorY);
     }
     
+    public void saludar(){
+        System.out.println("Hola");
+    }
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 

@@ -9,9 +9,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="776.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControlGUI.FXMLDocumentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="776.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControlGUI.FXMLDocumentController">
    <children>
       <ImageView fx:id="sun_jinwoo" fitHeight="133.0" fitWidth="129.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -20,23 +19,6 @@
       </ImageView>
       <ColorPicker fx:id="colorRelleno" layoutX="38.0" layoutY="189.0" />
       <ColorPicker fx:id="colorMargen" layoutX="39.0" layoutY="229.0" />
-      <Pane fx:id="panelFiguras" disable="true" layoutX="9.0" layoutY="261.0" prefHeight="56.0" prefWidth="147.0">
-         <children>
-            <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="31.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/hexágono.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="85.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="57.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="113.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="115.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="59.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="87.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="33.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="5.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </Pane>
       <MenuBar layoutX="-1.0" prefHeight="25.0" prefWidth="602.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
@@ -57,7 +39,7 @@
         </menus>
       </MenuBar>
       <Canvas fx:id="lienzo" height="478.0" layoutX="222.0" layoutY="38.0" onMouseClicked="#obtenerCoordenadas" width="542.0" />
-      <Button layoutX="22.0" layoutY="342.0" mnemonicParsing="false" onAction="#crearHexagono" prefHeight="31.0" prefWidth="85.0">
+      <Button layoutX="39.0" layoutY="321.0" mnemonicParsing="false" onAction="#crearHexagono" prefHeight="25.0" prefWidth="65.0">
          <graphic>
             <ImageView fx:id="botonHexagono" fitHeight="22.0" fitWidth="23.0" onMouseClicked="#crearHexagono" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -66,6 +48,14 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="135.0" layoutY="335.0" mnemonicParsing="false" onAction="#crearCruz" text="Button" />
+      <Button layoutX="112.0" layoutY="408.0" mnemonicParsing="false" onAction="#crearCruz" prefHeight="30.0" prefWidth="65.0" text="Cruz" />
+      <Button layoutX="39.0" layoutY="452.0" mnemonicParsing="false" onAction="#crearPacman" prefHeight="30.0" prefWidth="65.0" text="Pacman" />
+      <Button layoutX="39.0" layoutY="408.0" mnemonicParsing="false" onAction="#crearFlecha" prefHeight="30.0" prefWidth="65.0" text="Flecha" />
+      <Button layoutX="112.0" layoutY="366.0" mnemonicParsing="false" onAction="#crearDecagono" prefHeight="30.0" prefWidth="65.0" text="Decágono" />
+      <Button layoutX="39.0" layoutY="364.0" mnemonicParsing="false" onAction="#crearOctagono" prefHeight="30.0" prefWidth="65.0" text="Octagono" />
+      <Button layoutX="112.0" layoutY="321.0" mnemonicParsing="false" onAction="#crearHeptagono" prefHeight="30.0" prefWidth="65.0" text="Heptagono" />
+      <Button layoutX="112.0" layoutY="277.0" mnemonicParsing="false" onAction="#crearEstrella2" prefHeight="30.0" prefWidth="65.0" text="Estrella 2" />
+      <Button layoutX="39.0" layoutY="277.0" mnemonicParsing="false" onAction="#crearEstrella" prefHeight="30.0" prefWidth="65.0" text="Estrella" />
+      <Button layoutX="112.0" layoutY="452.0" mnemonicParsing="false" onAction="#crearCurva" prefHeight="30.0" prefWidth="65.0" text="Curva" />
    </children>
 </AnchorPane>

@@ -55,19 +55,17 @@ public class FXMLDocumentController implements Initializable {
     
     
     @FXML
-    private void crearEstrella(MouseEvent event) {
+    private void crearEstrella(ActionEvent event) {
     
     }
     
     @FXML
-    private void crearEstrella2(MouseEvent event) {
+    private void crearEstrella2(ActionEvent event) {
     
     }
     
     @FXML
     private void crearHexagono(ActionEvent event) {
-        
-        System.out.println("El punto " + coorX + ", " + coorY);
 
         listaPuntos = new LinkedList<>();
         int r = 40;
@@ -81,8 +79,6 @@ public class FXMLDocumentController implements Initializable {
         y1 = new double[numLados];
         x1[0] = h + r;
         y1[0] = k;
-        
-        System.out.println("Coordenada: 0" + "x: " + x1[0] + ", y: " + y1[0]);
      
         for (int i = numLados - 1; i > 0; i--) {
             double a = r * Math.sin(angulo * i);
@@ -90,7 +86,6 @@ public class FXMLDocumentController implements Initializable {
             
             x1[i] = b + h;
             y1[i] = a + k;
-            System.out.println("Coordenada: " + i + "x: " + x1[i] + "y: " + y1[i]);
         }
         
         Punto2D puntoInicial = new Punto2D(x1[0], y1[0]);
@@ -105,22 +100,51 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
-    private void crearHeptagono(MouseEvent event) {
-    
+    private void crearHeptagono(ActionEvent event) {
+        
+        listaPuntos = new LinkedList<>();
+        int r = 40;
+        g.setStroke(colorRelleno.getValue());
+        int numLados = 7;
+        double angulo = (2 * Math.PI)/ numLados;
+        
+        double h = coorX;
+        double k = coorY;
+        x1 = new double[numLados];
+        y1 = new double[numLados];
+        x1[0] = h + r;
+        y1[0] = k;
+     
+        for (int i = numLados - 1; i > 0; i--) {
+            double a = r * Math.sin(angulo * i);
+            double b = r * Math.cos(angulo * i);
+            
+            x1[i] = b + h;
+            y1[i] = a + k;
+        }
+        
+        Punto2D puntoInicial = new Punto2D(x1[0], y1[0]);
+        listaPuntos.add(puntoInicial);
+        for (int i = 1; i < x1.length; i++) {
+            Punto2D punto = new Punto2D(x1[i], y1[i]);
+            listaPuntos.addLast(punto);
+        }
+        g.strokePolygon(x1, y1, numLados);
+        g.setLineWidth(3);
     }
    
     @FXML
-    private void crearOctagono(MouseEvent event) {
+    private void crearOctagono(ActionEvent event) {
     
     }
     
     @FXML
-    private void crearDecagono(MouseEvent event) {
+    private void crearDecagono(ActionEvent event) {
     
     }
     
     @FXML
-    private void crearFlecha(MouseEvent event) {
+    private void crearFlecha(ActionEvent event) {
     
     }
    
@@ -183,12 +207,12 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
-    private void crearPacman(MouseEvent event) {
+    private void crearPacman(ActionEvent event) {
     
     }
        
     @FXML
-    private void crearCurva(MouseEvent event) {
+    private void crearCurva(ActionEvent event) {
     
     }
     

@@ -21,6 +21,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
@@ -47,6 +48,7 @@ public class FXMLDocumentController implements Initializable {
     double coorY;
     
     FileChooser fileChooser = new FileChooser();
+    
     
     int contadorEstrella;
     int contadorEstrella2;
@@ -77,120 +79,166 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private ImageView sun_jinwoo;
     
+    @FXML
+    private TextField campoTamano;
+    
+    @FXML
+    private TextField campoGrosor;
+    
+    @FXML
+    private Label labelGrosor;
+    
+    @FXML
+    private Label labelTamano;
+    
+    @FXML
+    private Label labelAviso;
+    
+    private boolean validarNumeros(){
+        
+        boolean pasoValidacion;
+        
+        try {
+            double r = Double.parseDouble(campoTamano.getText());
+            double grosor = Double.parseDouble(campoGrosor.getText());
+            
+            if(r>0 && grosor>0){
+                pasoValidacion= true;    
+            }else{
+                labelAviso.setText("Los valores ingresados deben ser positivos.");
+                pasoValidacion = false;
+            }
+            
+        } catch (Exception e) {
+            labelAviso.setText("Los valores deben ser númericos.");
+            pasoValidacion= false;
+        }
+        
+        return pasoValidacion;  
+    }
     
     @FXML
     private void crearEstrella(ActionEvent event) {
-    
-        listaPuntos = new LinkedList<>();
-        int r = 100;        
-        double h = coorX;
-        double k = coorY;
         
-        x1 = new double[10];
-        y1 = new double[10];
+        boolean pasoValidacion = validarNumeros();
         
-        x1[0] = h;
-        y1[0] = k+r;
+        if(pasoValidacion == true){
+            listaPuntos = new LinkedList<>();
+            double r = Double.parseDouble(campoTamano.getText()) * -1;       
+            double h = coorX;
+            double k = coorY;
+
+            x1 = new double[10];
+            y1 = new double[10];
+
+            x1[0] = h;
+            y1[0] = k+r;
+
+            x1[1] = (0.22*r) + h;
+            y1[1] = (0.31*r) + k;
+
+            x1[2] = (0.95*r) + h;
+            y1[2] = (0.31*r) + k;
+
+            x1[3] = (0.36*r) + h;
+            y1[3] = (-0.12*r) + k;
+
+            x1[4] = (0.59*r) + h;
+            y1[4] = (-0.81*r) + k;
+
+            x1[5] = h;
+            y1[5] = (-0.38*r) + k;
+
+            x1[6] = (-0.59*r) + h;
+            y1[6] = (-0.81*r) + k;
+
+            x1[7] = (-0.36*r) + h;
+            y1[7] = (-0.12*r) + k;
+
+            x1[8] = (-0.95*r) + h;
+            y1[8] = (0.31*r) + k;
+
+            x1[9] = (-0.22*r) + h;
+            y1[9] = (0.31*r) + k;
+
+            for (int i = 0; i < x1.length; i++) {
+                Punto2D punto = new Punto2D(x1[i], y1[i]);
+                listaPuntos.add(punto);
+                System.out.println("Coordenada: " + i + "x: " + x1[i] + "y: " + y1[i]);
+            }  
+            g.setStroke(colorRelleno.getValue());
+            g.setLineWidth(Double.parseDouble(campoGrosor.getText()));
+            g.strokePolygon(x1, y1, 10);
+
+            contadorEstrella ++;
+            mapTaller2.put("Estrella de 5 puntas #" + contadorEstrella, listaPuntos);
+            asignarValores(event);
+        }
         
-        x1[1] = (0.22*r) + h;
-        y1[1] = (0.31*r) + k;
-        
-        x1[2] = (0.95*r) + h;
-        y1[2] = (0.31*r) + k;
-        
-        x1[3] = (0.36*r) + h;
-        y1[3] = (-0.12*r) + k;
-        
-        x1[4] = (0.59*r) + h;
-        y1[4] = (-0.81*r) + k;
-        
-        x1[5] = h;
-        y1[5] = (-0.38*r) + k;
-        
-        x1[6] = (-0.59*r) + h;
-        y1[6] = (-0.81*r) + k;
-        
-        x1[7] = (-0.36*r) + h;
-        y1[7] = (-0.12*r) + k;
-        
-        x1[8] = (-0.95*r) + h;
-        y1[8] = (0.31*r) + k;
-        
-        x1[9] = (-0.22*r) + h;
-        y1[9] = (0.31*r) + k;
-        
-        for (int i = 0; i < x1.length; i++) {
-            Punto2D punto = new Punto2D(x1[i], y1[i]);
-            listaPuntos.add(punto);
-            System.out.println("Coordenada: " + i + "x: " + x1[i] + "y: " + y1[i]);
-        }  
-        g.setStroke(colorRelleno.getValue());
-        g.setLineWidth(3);
-        g.strokePolygon(x1, y1, 10);
-        
-        contadorEstrella ++;
-        mapTaller2.put("Estrella de 5 puntas #" + contadorEstrella, listaPuntos);
-        asignarValores(event);
     }
     
     @FXML
     private void crearEstrella2(ActionEvent event) {
-    
-        listaPuntos = new LinkedList<>();
-        int r = 70;
-        g.setStroke(colorRelleno.getValue());
-        double h = coorX;
-        double k = coorY;
-        x1 = new double[12];
-        y1 = new double[12];
         
-        x1[0] = h;
-        y1[0] = r + k;
+        boolean pasoValidacion = validarNumeros();
         
-        x1[1] = (0.29*r) + h;
-        y1[1] = (0.5*r) + k;
-        
-        x1[2] = (0.87*r) + h;
-        y1[2] = (0.5*r) + k;
-        
-        x1[3] = (0.58*r) + h;
-        y1[3] = k;
-        
-        x1[4] = (0.87*r) + h;
-        y1[4] = -(0.5*r) + k;
-        
-        x1[5] = (0.29*r) + h;
-        y1[5] = -(0.5*r) + k;
-        
-        x1[6] = h;
-        y1[6] = -r + k;
-        
-        x1[7] = -(0.29*r) + h;
-        y1[7] = -(0.5*r) + k;
-        
-        x1[8] = -(0.87*r) + h;
-        y1[8] = -(0.5*r) + k;
-        
-        x1[9] = -(0.58*r) + h;
-        y1[9] = k;
-        
-        x1[10] = -(0.87*r) + h;
-        y1[10] = (0.5*r) + k;
-        
-        x1[11] = -(0.29*r) + h;
-        y1[11] = (0.5*r) + k;
-        
-        for (int i = 0; i < x1.length; i++) {
-            Punto2D punto = new Punto2D(x1[i], y1[i]);
-            listaPuntos.addLast(punto);
-            System.out.println("Coordenada: " + i + "x: " + x1[i] + "y: " + y1[i]);
-        }
-        g.setLineWidth(3);
-        g.strokePolygon(x1, y1,12);
-        
-        contadorEstrella2 ++;
-        mapTaller2.put("Estrella de 6 puntas #" + contadorEstrella2, listaPuntos);
-        asignarValores(event);
+        if(pasoValidacion == true){
+            listaPuntos = new LinkedList<>();
+            int r = 70;
+            g.setStroke(colorRelleno.getValue());
+            double h = coorX;
+            double k = coorY;
+            x1 = new double[12];
+            y1 = new double[12];
+
+            x1[0] = h;
+            y1[0] = r + k;
+
+            x1[1] = (0.29*r) + h;
+            y1[1] = (0.5*r) + k;
+
+            x1[2] = (0.87*r) + h;
+            y1[2] = (0.5*r) + k;
+
+            x1[3] = (0.58*r) + h;
+            y1[3] = k;
+
+            x1[4] = (0.87*r) + h;
+            y1[4] = -(0.5*r) + k;
+
+            x1[5] = (0.29*r) + h;
+            y1[5] = -(0.5*r) + k;
+
+            x1[6] = h;
+            y1[6] = -r + k;
+
+            x1[7] = -(0.29*r) + h;
+            y1[7] = -(0.5*r) + k;
+
+            x1[8] = -(0.87*r) + h;
+            y1[8] = -(0.5*r) + k;
+
+            x1[9] = -(0.58*r) + h;
+            y1[9] = k;
+
+            x1[10] = -(0.87*r) + h;
+            y1[10] = (0.5*r) + k;
+
+            x1[11] = -(0.29*r) + h;
+            y1[11] = (0.5*r) + k;
+
+            for (int i = 0; i < x1.length; i++) {
+                Punto2D punto = new Punto2D(x1[i], y1[i]);
+                listaPuntos.addLast(punto);
+                System.out.println("Coordenada: " + i + "x: " + x1[i] + "y: " + y1[i]);
+            }
+            g.setLineWidth(3);
+            g.strokePolygon(x1, y1,12);
+
+            contadorEstrella2 ++;
+            mapTaller2.put("Estrella de 6 puntas #" + contadorEstrella2, listaPuntos);
+            asignarValores(event);
+        } 
     }
     
     @FXML
@@ -484,6 +532,7 @@ public class FXMLDocumentController implements Initializable {
     
         
     }
+     
     
     @FXML
     private void guardarCanva(ActionEvent event){
@@ -527,6 +576,10 @@ public class FXMLDocumentController implements Initializable {
         }        
     }
     
+    /**
+    * Obtiene las coordenadas del mouse cuando el usuario haga click dentro del lienzo.
+    * @param event evento de tipo MouseEvent que desencadenará la función del método cuando detecte una acción del mouse.
+    */
     @FXML
     private void obtenerCoordenadas(MouseEvent event) { 
         
@@ -534,9 +587,13 @@ public class FXMLDocumentController implements Initializable {
         coorY = event.getY();   
         System.out.println("El punto " + coorX + ", " + coorY);
     }
-      
+    
+    /**
+    * Limpia el lienzo donde el usuario puede dibujar las figuras geométricas.
+    * @param event evento de tipo ActionEvent que desencadenará la función del método.
+    */
     @FXML
-    private void borrarTodo(ActionEvent event) {
+    private void borrarLienzo(ActionEvent event) {
         
         g.clearRect(0, 0, lienzo.getWidth(), lienzo.getHeight());
         g.setStroke(Color.BLACK);
@@ -560,7 +617,7 @@ public class FXMLDocumentController implements Initializable {
     }      
    
     @FXML
-    private void guardar(ActionEvent event) {
+    private void guardarXML(ActionEvent event) {
 
         boolean t = ManejadorArchivos.guardarFiguras(mapTaller2);
         if (t == true ){

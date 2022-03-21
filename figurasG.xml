@@ -1,77 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FigurasGeometricas>
-  <FiguraGeometrica nombreFigura="Hexágono #6">
-    <Punto0 X="251.0" Y="240.0" />
-    <Punto1 X="231.0" Y="274.6410161513775" />
-    <Punto2 X="191.0" Y="274.6410161513775" />
-    <Punto3 X="171.0" Y="240.0" />
-    <Punto4 X="190.99999999999997" Y="205.35898384862247" />
-    <Punto5 X="230.99999999999997" Y="205.35898384862244" />
-  </FiguraGeometrica>
-  <FiguraGeometrica nombreFigura="Hexágono #3">
-    <Punto0 X="251.0" Y="240.0" />
-    <Punto1 X="231.0" Y="274.6410161513775" />
-    <Punto2 X="191.0" Y="274.6410161513775" />
-    <Punto3 X="171.0" Y="240.0" />
-    <Punto4 X="190.99999999999997" Y="205.35898384862247" />
-    <Punto5 X="230.99999999999997" Y="205.35898384862244" />
-  </FiguraGeometrica>
-  <FiguraGeometrica nombreFigura="Hexágono #2">
-    <Punto0 X="251.0" Y="240.0" />
-    <Punto1 X="231.0" Y="274.6410161513775" />
-    <Punto2 X="191.0" Y="274.6410161513775" />
-    <Punto3 X="171.0" Y="240.0" />
-    <Punto4 X="190.99999999999997" Y="205.35898384862247" />
-    <Punto5 X="230.99999999999997" Y="205.35898384862244" />
-  </FiguraGeometrica>
-  <FiguraGeometrica nombreFigura="Hexágono #5">
-    <Punto0 X="251.0" Y="240.0" />
-    <Punto1 X="231.0" Y="274.6410161513775" />
-    <Punto2 X="191.0" Y="274.6410161513775" />
-    <Punto3 X="171.0" Y="240.0" />
-    <Punto4 X="190.99999999999997" Y="205.35898384862247" />
-    <Punto5 X="230.99999999999997" Y="205.35898384862244" />
-  </FiguraGeometrica>
-  <FiguraGeometrica nombreFigura="Hexágono #4">
-    <Punto0 X="251.0" Y="240.0" />
-    <Punto1 X="231.0" Y="274.6410161513775" />
-    <Punto2 X="191.0" Y="274.6410161513775" />
-    <Punto3 X="171.0" Y="240.0" />
-    <Punto4 X="190.99999999999997" Y="205.35898384862247" />
-    <Punto5 X="230.99999999999997" Y="205.35898384862244" />
-  </FiguraGeometrica>
-  <FiguraGeometrica nombreFigura="Estrella de 5 puntas #1">
-    <Punto0 X="121.0" Y="253.0" />
-    <Punto1 X="143.0" Y="184.0" />
-    <Punto2 X="216.0" Y="184.0" />
-    <Punto3 X="157.0" Y="141.0" />
-    <Punto4 X="180.0" Y="72.0" />
-    <Punto5 X="121.0" Y="115.0" />
-    <Punto6 X="62.0" Y="72.0" />
-    <Punto7 X="85.0" Y="141.0" />
-    <Punto8 X="26.0" Y="184.0" />
-    <Punto9 X="99.0" Y="184.0" />
-  </FiguraGeometrica>
-  <FiguraGeometrica nombreFigura="Hexágono #1">
-    <Punto0 X="325.0" Y="249.0" />
-    <Punto1 X="305.0" Y="283.6410161513775" />
-    <Punto2 X="265.0" Y="283.6410161513775" />
-    <Punto3 X="245.0" Y="249.0" />
-    <Punto4 X="265.0" Y="214.35898384862247" />
-    <Punto5 X="305.0" Y="214.35898384862244" />
-  </FiguraGeometrica>
-  <FiguraGeometrica nombreFigura="Estrella de 6 puntas #1">
-    <Punto0 X="388.0" Y="227.0" />
-    <Punto1 X="408.3" Y="192.0" />
-    <Punto2 X="448.9" Y="192.0" />
-    <Punto3 X="428.6" Y="157.0" />
-    <Punto4 X="448.9" Y="122.0" />
-    <Punto5 X="408.3" Y="122.0" />
-    <Punto6 X="388.0" Y="87.0" />
-    <Punto7 X="367.7" Y="122.0" />
-    <Punto8 X="327.1" Y="122.0" />
-    <Punto9 X="347.4" Y="157.0" />
-    <Punto10 X="327.1" Y="192.0" />
-    <Punto11 X="367.7" Y="192.0" />
+  <FiguraGeometrica nombreFigura="Cruz #1">
+    <Punto0 X="174.0" Y="258.0" />
+    <Punto1 X="228.6" Y="258.0" />
+    <Punto2 X="228.6" Y="230.0" />
+    <Punto3 X="174.0" Y="230.0" />
+    <Punto4 X="174.0" Y="175.4" />
+    <Punto5 X="146.0" Y="175.4" />
+    <Punto6 X="146.0" Y="230.0" />
+    <Punto7 X="91.4" Y="230.0" />
+    <Punto8 X="91.4" Y="258.0" />
+    <Punto9 X="146.0" Y="258.0" />
+    <Punto10 X="146.0" Y="312.6" />
+    <Punto11 X="174.0" Y="312.6" />
   </FiguraGeometrica>
 </FigurasGeometricas>

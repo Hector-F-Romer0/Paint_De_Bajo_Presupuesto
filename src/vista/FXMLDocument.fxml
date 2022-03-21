@@ -4,29 +4,33 @@
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="773.0" style="-fx-background-color: #E86252;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControlGUI.FXMLDocumentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="657.0" prefWidth="921.0" style="-fx-background-color: #E86252;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControlGUI.FXMLDocumentController">
    <children>
       <ImageView fx:id="sun_jinwoo" fitHeight="133.0" fitWidth="129.0" layoutX="48.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../Downloads/Captura.PNG" />
          </image>
       </ImageView>
-      <ColorPicker fx:id="colorRelleno" layoutX="38.0" layoutY="189.0" style="-fx-background-color: #F4D35E;" />
-      <ColorPicker fx:id="colorMargen" layoutX="39.0" layoutY="229.0" style="-fx-background-color: #F4D35E;" />
-      <MenuBar layoutX="-1.0" prefHeight="25.0" prefWidth="773.0" style="-fx-background-color: #EEEBD0;">
+      <ColorPicker fx:id="colorRelleno" layoutX="20.0" layoutY="188.0" style="-fx-background-color: #F4D35E;" />
+      <ColorPicker fx:id="colorMargen" layoutX="18.0" layoutY="229.0" style="-fx-background-color: #F4D35E;" />
+      <MenuBar layoutX="-1.0" prefHeight="32.0" prefWidth="921.0" style="-fx-background-color: #EEEBD0;">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#cargarCanva" text="Cargar" />
                   <MenuItem mnemonicParsing="false" onAction="#guardarCanva" text="Guardar" />
+                  <MenuItem mnemonicParsing="false" onAction="#guardarXML" text="Guardar XML" />
+                  <MenuItem mnemonicParsing="false" onAction="#borrarLienzo" text="Borrar lienzo" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
@@ -59,13 +63,16 @@
       <Button layoutX="112.0" layoutY="270.0" mnemonicParsing="false" onAction="#crearEstrella2" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #EEB61C;" text="Estrella 2" />
       <Button layoutX="39.0" layoutY="270.0" mnemonicParsing="false" onAction="#crearEstrella" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #EEB61C;" text="Estrella" />
       <Button layoutX="112.0" layoutY="420.0" mnemonicParsing="false" onAction="#crearCurva" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #EEB61C;" text="Curva" />
-      <Button layoutX="38.0" layoutY="496.0" mnemonicParsing="false" onAction="#borrarTodo" prefHeight="30.0" prefWidth="138.0" style="-fx-background-color: #EEB61C;" text="Borrar Canvas" />
-      <Pane layoutX="201.0" layoutY="35.0" prefHeight="500.0" prefWidth="561.0" style="-fx-background-color: #EEEBD0;">
+      <Pane layoutX="201.0" layoutY="35.0" prefHeight="625.0" prefWidth="722.0" style="-fx-background-color: #EEEBD0;">
          <children>
-            <Canvas fx:id="lienzo" height="500.0" onMouseClicked="#obtenerCoordenadas" width="561.0" />
+            <Canvas fx:id="lienzo" height="625.0" onMouseClicked="#obtenerCoordenadas" width="722.0" />
          </children>
       </Pane>
-      <Button layoutX="38.0" layoutY="458.0" mnemonicParsing="false" onAction="#guardar" prefHeight="30.0" prefWidth="138.0" style="-fx-background-color: #EEB61C;" text="Guardar archivo XML" />
+      <Label fx:id="labelTamano" layoutX="31.0" layoutY="469.0" text="Tamaño de la figura" />
+      <TextField fx:id="campoTamano" layoutX="27.0" layoutY="490.0" prefHeight="31.0" prefWidth="78.0" />
+      <Label fx:id="labelGrosor" layoutX="33.0" layoutY="540.0" text="Grosor de la figura" />
+      <TextField fx:id="campoGrosor" layoutX="29.0" layoutY="561.0" prefHeight="31.0" prefWidth="78.0" />
+      <Label fx:id="labelAviso" layoutX="31.0" layoutY="612.0" textFill="WHITE" />
    </children>
    <opaqueInsets>
       <Insets />

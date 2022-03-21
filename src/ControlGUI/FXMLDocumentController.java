@@ -19,6 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.ArcType;
 import modelo.Punto2D;
 
 /**
@@ -108,7 +109,57 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void crearEstrella2(ActionEvent event) {
     
+        listaPuntos = new LinkedList<>();
+        int r = 70;
+        g.setStroke(colorRelleno.getValue());
+        double h = coorX;
+        double k = coorY;
+        x1 = new double[12];
+        y1 = new double[12];
         
+        x1[0] = h;
+        y1[0] = r + k;
+        
+        x1[1] = (0.29*r) + h;
+        y1[1] = (0.5*r) + k;
+        
+        x1[2] = (0.87*r) + h;
+        y1[2] = (0.5*r) + k;
+        
+        x1[3] = (0.58*r) + h;
+        y1[3] = k;
+        
+        x1[4] = (0.87*r) + h;
+        y1[4] = -(0.5*r) + k;
+        
+        x1[5] = (0.29*r) + h;
+        y1[5] = -(0.5*r) + k;
+        
+        x1[6] = h;
+        y1[6] = -r + k;
+        
+        x1[7] = -(0.29*r) + h;
+        y1[7] = -(0.5*r) + k;
+        
+        x1[8] = -(0.87*r) + h;
+        y1[8] = -(0.5*r) + k;
+        
+        x1[9] = -(0.58*r) + h;
+        y1[9] = k;
+        
+        x1[10] = -(0.87*r) + h;
+        y1[10] = (0.5*r) + k;
+        
+        x1[11] = -(0.29*r) + h;
+        y1[11] = (0.5*r) + k;
+        
+        for (int i = 0; i < x1.length; i++) {
+            Punto2D punto = new Punto2D(x1[i], y1[i]);
+            listaPuntos.addLast(punto);
+            System.out.println("Coordenada: " + i + "x: " + x1[i] + "y: " + y1[i]);
+        }
+        g.setLineWidth(3);
+        g.strokePolygon(x1, y1,12);
     }
     
     @FXML
@@ -353,7 +404,20 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void crearPacman(ActionEvent event) {
     
-        
+        listaPuntos = new LinkedList<>();
+        int r = 100; 
+        g.setStroke(colorRelleno.getValue());
+        double x = coorX;
+        double y = coorY;
+        x1 = new double[3];
+        y1 = new double[3];
+        for (int i = 0; i < x1.length; i++) {
+            Punto2D punto = new Punto2D(x1[i], y1[i]);
+            listaPuntos.addLast(punto);
+            System.out.println("Coordenada: " + i + "x: " + x1[i] + "y: " + y1[i]);
+        }
+        g.setLineWidth(3);
+        g.strokeArc(x, y, r, r, 60, 270, ArcType.ROUND);
     }
        
     @FXML
@@ -370,6 +434,15 @@ public class FXMLDocumentController implements Initializable {
         System.out.println("El punto " + coorX + ", " + coorY);
     }
       
+    @FXML
+    private void borrarTodo(ActionEvent event) {
+        
+        g.clearRect(0, 0, lienzo.getWidth(), lienzo.getHeight());
+        g.setStroke(Color.BLACK);
+        g.setLineWidth(3);  
+        g.strokeRect(0, 0, lienzo.getWidth(), lienzo.getHeight());
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 

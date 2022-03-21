@@ -5,12 +5,15 @@
  */
 package ControlGUI;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.ResourceBundle;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,10 +22,13 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
+import javafx.stage.FileChooser;
+import javax.imageio.ImageIO;
 import modelo.ManejadorArchivos;
 import modelo.Punto2D;
 
@@ -39,6 +45,8 @@ public class FXMLDocumentController implements Initializable {
 
     double coorX;
     double coorY;
+    
+    FileChooser fileChooser = new FileChooser();
     
     int contadorEstrella;
     int contadorEstrella2;
@@ -475,6 +483,48 @@ public class FXMLDocumentController implements Initializable {
     private void crearCurva(ActionEvent event) {
     
         
+    }
+    
+    @FXML
+    private void guardarCanva(ActionEvent event){
+        
+        // Abre un explorador de archivos para indicar donde se van a guardar los canvas
+        File archivoAGuardar = fileChooser.showSaveDialog(null);
+        
+        if(archivoAGuardar != null){
+            try {
+                WritableImage writableImage = new WritableImage((int)lienzo.getWidth(),(int)lienzo.getHeight());
+                // Toma una instantánea o foto del lienzo en ese momento
+                lienzo.snapshot(null, writableImage);
+                BufferedImage bImage =SwingFXUtils.fromFXImage(writableImage, null);
+//                RenderedImage imagenRenderizada = SwingFXUtils.fromFXImage(writableImage, null);
+                ImageIO.write(bImage, "jpg", archivoAGuardar);
+            } catch (Exception e) {
+                System.out.println("Error al guardar la imagen");
+                System.out.println(e.getMessage());
+            }
+        }else{
+            System.out.println("No se seleccionó archivo");
+        }
+    }
+    
+    @FXML
+    private void cargarCanva(ActionEvent event) {
+ 
+        //Ayuda a que solo se pueden seleccionar archivos 'JPG' y que obligatoriamente sean "JPG"
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JPG", "*.jpg"));
+        
+        // Creamos un objeto File donde se guardará el archivo que el usuario escoja y abrimos el explorador de archivos
+        File archivoSeleccionado = fileChooser.showOpenDialog(null);
+        // Sirve para seleccionar un solo archivo
+        
+        
+        // Si se cargó un archivo, será diferente de null
+        if(archivoSeleccionado !=null){
+            System.out.println("Se cargó el archivo");
+        }else{
+            System.out.println("No se cargó el archivo");
+        }        
     }
     
     @FXML

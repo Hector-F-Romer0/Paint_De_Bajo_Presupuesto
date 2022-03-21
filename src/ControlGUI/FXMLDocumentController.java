@@ -6,7 +6,10 @@
 package ControlGUI;
 
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +23,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
+import modelo.ManejadorArchivos;
 import modelo.Punto2D;
 
 /**
@@ -27,21 +31,32 @@ import modelo.Punto2D;
  * @author andres.aristizabal_m
  */
 public class FXMLDocumentController implements Initializable {
-      
+     
+    private GraphicsContext g;
+    
     double x1[];
     double y1[];
 
     double coorX;
     double coorY;
     
+    int contadorEstrella;
+    int contadorEstrella2;
+    int contadorHexagono;
+    int contadorHeptagono;
+    int contadorOctagono;
+    int contadorDecagono;
+    int contadorFlecha;
+    int contadorCruz;
+    int contadorPacman;
+    int contadorCurva;
+    
     LinkedList<Punto2D> listaPuntos;
+    HashMap<String, LinkedList<Punto2D>> mapTaller2;
     
     @FXML
     private Canvas lienzo;
-    
-    @FXML
-    private GraphicsContext g;
-        
+           
     @FXML
     private Pane panelFiguras;
    
@@ -104,6 +119,10 @@ public class FXMLDocumentController implements Initializable {
         g.setStroke(colorRelleno.getValue());
         g.setLineWidth(3);
         g.strokePolygon(x1, y1, 10);
+        
+        contadorEstrella ++;
+        mapTaller2.put("Estrella de 5 puntas #" + contadorEstrella, listaPuntos);
+        asignarValores(event);
     }
     
     @FXML
@@ -160,6 +179,10 @@ public class FXMLDocumentController implements Initializable {
         }
         g.setLineWidth(3);
         g.strokePolygon(x1, y1,12);
+        
+        contadorEstrella2 ++;
+        mapTaller2.put("Estrella de 6 puntas #" + contadorEstrella2, listaPuntos);
+        asignarValores(event);
     }
     
     @FXML
@@ -194,6 +217,10 @@ public class FXMLDocumentController implements Initializable {
         }
         g.setLineWidth(3);
         g.strokePolygon(x1, y1, numLados);
+        
+        contadorHexagono ++;
+        mapTaller2.put("Hexágono #" + contadorHexagono, listaPuntos);
+        asignarValores(event);
     }
     
     @FXML
@@ -228,6 +255,10 @@ public class FXMLDocumentController implements Initializable {
         }
         g.setLineWidth(3);
         g.strokePolygon(x1, y1, numLados);
+        
+        contadorHeptagono ++;
+        mapTaller2.put("Heptágono #" + contadorHeptagono, listaPuntos);
+        asignarValores(event);
     }
    
     @FXML
@@ -262,6 +293,10 @@ public class FXMLDocumentController implements Initializable {
         }
         g.setLineWidth(3);
         g.strokePolygon(x1, y1, numLados);
+        
+        contadorOctagono ++;
+        mapTaller2.put("Octágono #" + contadorOctagono, listaPuntos);
+        asignarValores(event);
     }
     
     @FXML
@@ -270,7 +305,7 @@ public class FXMLDocumentController implements Initializable {
         listaPuntos = new LinkedList<>();
         int r = 40;
         g.setStroke(colorRelleno.getValue());
-        int numLados = 9;
+        int numLados = 10;
         double angulo = (2 * Math.PI)/ numLados;
         
         double h = coorX;
@@ -296,6 +331,10 @@ public class FXMLDocumentController implements Initializable {
         }
         g.setLineWidth(3);
         g.strokePolygon(x1, y1, numLados);
+        
+        contadorDecagono ++;
+        mapTaller2.put("Decágono #" + contadorDecagono, listaPuntos);
+        asignarValores(event);
     }
     
     @FXML
@@ -341,6 +380,10 @@ public class FXMLDocumentController implements Initializable {
         g.setStroke(colorRelleno.getValue());
         g.setLineWidth(3);
         g.strokePolygon(x1, y1, 7);
+        
+        contadorFlecha ++;
+        mapTaller2.put("Fleha #" + contadorFlecha, listaPuntos);
+        asignarValores(event);
     }
    
     @FXML
@@ -399,6 +442,10 @@ public class FXMLDocumentController implements Initializable {
         }
         g.setLineWidth(3);
         g.strokePolygon(x1, y1,12);
+        
+        contadorCruz ++;
+        mapTaller2.put("Cruz #" + contadorCruz, listaPuntos);
+        asignarValores(event);
     }
     
     @FXML
@@ -418,6 +465,10 @@ public class FXMLDocumentController implements Initializable {
         }
         g.setLineWidth(3);
         g.strokeArc(x, y, r, r, 60, 270, ArcType.ROUND);
+        
+        contadorPacman ++;
+        mapTaller2.put("Pacman #" + contadorPacman, listaPuntos);
+        asignarValores(event);
     }
        
     @FXML
@@ -443,6 +494,32 @@ public class FXMLDocumentController implements Initializable {
         g.strokeRect(0, 0, lienzo.getWidth(), lienzo.getHeight());
     }
     
+    private void asignarValores(ActionEvent event) {
+       
+        Iterator<Map.Entry<String, LinkedList<Punto2D>>> entries = mapTaller2.entrySet().iterator();
+        
+        while (entries.hasNext()) {
+            Map.Entry<String, LinkedList<Punto2D>> entry = entries.next();
+            System.out.println(entry.getKey());
+             
+                for (int i = 0; i < entry.getValue().size(); i++) {
+                    Punto2D get = entry.getValue().get(i);  
+                    System.out.println("Puntos "+get.toString()+"\n");
+                }               
+        }
+    }      
+   
+    @FXML
+    private void guardar(ActionEvent event) {
+
+        boolean t = ManejadorArchivos.guardarFiguras(mapTaller2);
+        if (t == true ){
+            System.out.println("Se guardó");
+        }else{
+            System.out.println("No se guardó");
+        }       
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -453,7 +530,19 @@ public class FXMLDocumentController implements Initializable {
 
         g.setStroke(Color.BLACK);
         g.setLineWidth(3);  
-        g.strokeRect(0, 0, largo, alto);               
+        g.strokeRect(0, 0, largo, alto);  
+        
+        mapTaller2 = new HashMap<>();
+        contadorEstrella = 0;
+        contadorEstrella2 = 0;
+        contadorHexagono = 0;
+        contadorHeptagono = 0;
+        contadorOctagono = 0;
+        contadorDecagono = 0;
+        contadorFlecha = 0;
+        contadorCruz = 0;
+        contadorPacman = 0;
+        contadorCurva = 0;
     }    
     
 }

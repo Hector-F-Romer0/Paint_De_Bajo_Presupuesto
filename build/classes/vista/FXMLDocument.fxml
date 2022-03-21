@@ -40,7 +40,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Button layoutX="39.0" layoutY="321.0" mnemonicParsing="false" onAction="#crearHexagono" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #EEB61C;">
+      <Button layoutX="39.0" layoutY="308.0" mnemonicParsing="false" onAction="#crearHexagono" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #EEB61C;">
          <graphic>
             <ImageView fx:id="botonHexagono" fitHeight="22.0" fitWidth="23.0" onMouseClicked="#crearHexagono" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -49,21 +49,22 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="112.0" layoutY="403.0" mnemonicParsing="false" onAction="#crearCruz" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #EEB61C;" text="Cruz" />
-      <Button layoutX="39.0" layoutY="445.0" mnemonicParsing="false" onAction="#crearPacman" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #EEB61C;" text="Pacman" />
-      <Button layoutX="39.0" layoutY="404.0" mnemonicParsing="false" onAction="#crearFlecha" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #EEB61C;" text="Flecha" />
-      <Button layoutX="112.0" layoutY="364.0" mnemonicParsing="false" onAction="#crearDecagono" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #EEB61C;" text="Decágono" />
-      <Button layoutX="39.0" layoutY="364.0" mnemonicParsing="false" onAction="#crearOctagono" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #EEB61C;" text="Octagono" />
-      <Button layoutX="112.0" layoutY="321.0" mnemonicParsing="false" onAction="#crearHeptagono" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #EEB61C;" text="Heptagono" />
-      <Button layoutX="112.0" layoutY="277.0" mnemonicParsing="false" onAction="#crearEstrella2" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #EEB61C;" text="Estrella 2" />
-      <Button layoutX="39.0" layoutY="277.0" mnemonicParsing="false" onAction="#crearEstrella" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #EEB61C;" text="Estrella" />
-      <Button layoutX="112.0" layoutY="445.0" mnemonicParsing="false" onAction="#crearCurva" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #EEB61C;" text="Curva" />
-      <Button layoutX="38.0" layoutY="484.0" mnemonicParsing="false" onAction="#borrarTodo" prefHeight="30.0" prefWidth="138.0" style="-fx-background-color: #EEB61C;" text="Borrar Canvas" />
+      <Button layoutX="112.0" layoutY="383.0" mnemonicParsing="false" onAction="#crearCruz" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #EEB61C;" text="Cruz" />
+      <Button layoutX="39.0" layoutY="421.0" mnemonicParsing="false" onAction="#crearPacman" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #EEB61C;" text="Pacman" />
+      <Button layoutX="39.0" layoutY="383.0" mnemonicParsing="false" onAction="#crearFlecha" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #EEB61C;" text="Flecha" />
+      <Button layoutX="112.0" layoutY="346.0" mnemonicParsing="false" onAction="#crearDecagono" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #EEB61C;" text="Decágono" />
+      <Button layoutX="39.0" layoutY="346.0" mnemonicParsing="false" onAction="#crearOctagono" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #EEB61C;" text="Octagono" />
+      <Button layoutX="112.0" layoutY="308.0" mnemonicParsing="false" onAction="#crearHeptagono" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #EEB61C;" text="Heptagono" />
+      <Button layoutX="112.0" layoutY="270.0" mnemonicParsing="false" onAction="#crearEstrella2" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #EEB61C;" text="Estrella 2" />
+      <Button layoutX="39.0" layoutY="270.0" mnemonicParsing="false" onAction="#crearEstrella" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #EEB61C;" text="Estrella" />
+      <Button layoutX="112.0" layoutY="420.0" mnemonicParsing="false" onAction="#crearCurva" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #EEB61C;" text="Curva" />
+      <Button layoutX="38.0" layoutY="496.0" mnemonicParsing="false" onAction="#borrarTodo" prefHeight="30.0" prefWidth="138.0" style="-fx-background-color: #EEB61C;" text="Borrar Canvas" />
       <Pane layoutX="201.0" layoutY="35.0" prefHeight="500.0" prefWidth="561.0" style="-fx-background-color: #EEEBD0;">
          <children>
             <Canvas fx:id="lienzo" height="500.0" onMouseClicked="#obtenerCoordenadas" width="561.0" />
          </children>
       </Pane>
+      <Button layoutX="38.0" layoutY="458.0" mnemonicParsing="false" onAction="#guardar" prefHeight="30.0" prefWidth="138.0" style="-fx-background-color: #EEB61C;" text="Guardar archivo XML" />
    </children>
    <opaqueInsets>
       <Insets />

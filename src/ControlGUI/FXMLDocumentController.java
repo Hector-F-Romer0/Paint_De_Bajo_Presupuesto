@@ -30,6 +30,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
 import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
+import modelo.Figura;
 import modelo.ManejadorArchivos;
 import modelo.Punto2D;
 
@@ -63,6 +64,7 @@ public class FXMLDocumentController implements Initializable {
     
     LinkedList<Punto2D> listaPuntos;
     HashMap<String, LinkedList<Punto2D>> mapTaller2;
+    LinkedList<Figura> listaFigurasCreadas;
     
     @FXML
     private Canvas lienzo;
@@ -74,7 +76,7 @@ public class FXMLDocumentController implements Initializable {
     private ColorPicker colorRelleno;
     
     @FXML
-    private ColorPicker colorMargen;
+    private ColorPicker colorBorde;
     
     @FXML
     private ImageView sun_jinwoo;
@@ -93,6 +95,16 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private Label labelAviso;
+    
+    @FXML
+    private void agregarFiguras(){
+        Color colorRelleno = this.colorRelleno.getValue();
+        Color colorBorde = this.colorBorde.getValue();
+        Double grosor = Double.parseDouble(campoGrosor.getText());
+        Figura fig = new Figura(colorRelleno,colorBorde,grosor);
+        listaFigurasCreadas.add(fig);
+    }
+    
     
     private boolean validarNumeros(){
         
@@ -117,6 +129,10 @@ public class FXMLDocumentController implements Initializable {
         return pasoValidacion;  
     }
     
+    /**
+    * Crea una figura geométrica de cinco puntos con forma de estrella de cinco puntas.
+    * @param event evento de tipo ActionEvent que desencadenará la función del método.
+    */
     @FXML
     private void crearEstrella(ActionEvent event) {
         
@@ -166,13 +182,20 @@ public class FXMLDocumentController implements Initializable {
                 listaPuntos.add(punto);
                 System.out.println("Coordenada: " + i + "x: " + x1[i] + "y: " + y1[i]);
             }  
-            g.setStroke(colorRelleno.getValue());
+            
+            g.setStroke(colorBorde.getValue());
+            g.setFill(colorRelleno.getValue());
+            g.fillPolygon(x1, y1, 10);
             g.setLineWidth(Double.parseDouble(campoGrosor.getText()));
+            agregarFiguras();
+            
             g.strokePolygon(x1, y1, 10);
 
             contadorEstrella ++;
             mapTaller2.put("Estrella de 5 puntas #" + contadorEstrella, listaPuntos);
             asignarValores(event);
+            
+            System.out.println(listaFigurasCreadas.toString());
         }
         
     }
@@ -232,7 +255,12 @@ public class FXMLDocumentController implements Initializable {
                 listaPuntos.addLast(punto);
                 System.out.println("Coordenada: " + i + "x: " + x1[i] + "y: " + y1[i]);
             }
-            g.setLineWidth(3);
+            g.setStroke(colorBorde.getValue());
+            g.setFill(colorRelleno.getValue());
+            g.fillPolygon(x1, y1, 12);
+            g.setLineWidth(Double.parseDouble(campoGrosor.getText()));
+            agregarFiguras();
+            
             g.strokePolygon(x1, y1,12);
 
             contadorEstrella2 ++;
@@ -243,44 +271,59 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void crearHexagono(ActionEvent event) {
+        
+        boolean pasoValidacion = validarNumeros();
+        
+        if(pasoValidacion == true){
+            listaPuntos = new LinkedList<>();
+            int r = 40;
+            g.setStroke(colorRelleno.getValue());
+            int numLados = 6;
+            double angulo = (2 * Math.PI)/ numLados;
 
-        listaPuntos = new LinkedList<>();
-        int r = 40;
-        g.setStroke(colorRelleno.getValue());
-        int numLados = 6;
-        double angulo = (2 * Math.PI)/ numLados;
-        
-        double h = coorX;
-        double k = coorY;
-        x1 = new double[numLados];
-        y1 = new double[numLados];
-        x1[0] = h + r;
-        y1[0] = k;
-     
-        for (int i = numLados - 1; i > 0; i--) {
-            double a = r * Math.sin(angulo * i);
-            double b = r * Math.cos(angulo * i);
+            double h = coorX;
+            double k = coorY;
+            x1 = new double[numLados];
+            y1 = new double[numLados];
+            x1[0] = h + r;
+            y1[0] = k;
+
+            for (int i = numLados - 1; i > 0; i--) {
+                double a = r * Math.sin(angulo * i);
+                double b = r * Math.cos(angulo * i);
+
+                x1[i] = b + h;
+                y1[i] = a + k;
+            }
+
+            Punto2D puntoInicial = new Punto2D(x1[0], y1[0]);
+            listaPuntos.add(puntoInicial);
+            for (int i = 1; i < x1.length; i++) {
+                Punto2D punto = new Punto2D(x1[i], y1[i]);
+                listaPuntos.addLast(punto);
+            }
+            g.setStroke(colorBorde.getValue());
+            g.setFill(colorRelleno.getValue());
+            g.fillPolygon(x1, y1, numLados);
+            g.setLineWidth(Double.parseDouble(campoGrosor.getText()));
+            agregarFiguras();
+            g.strokePolygon(x1, y1, numLados);
             
-            x1[i] = b + h;
-            y1[i] = a + k;
+            contadorHexagono ++;
+            mapTaller2.put("Hexágono #" + contadorHexagono, listaPuntos);
+            asignarValores(event);
         }
         
-        Punto2D puntoInicial = new Punto2D(x1[0], y1[0]);
-        listaPuntos.add(puntoInicial);
-        for (int i = 1; i < x1.length; i++) {
-            Punto2D punto = new Punto2D(x1[i], y1[i]);
-            listaPuntos.addLast(punto);
-        }
-        g.setLineWidth(3);
-        g.strokePolygon(x1, y1, numLados);
         
-        contadorHexagono ++;
-        mapTaller2.put("Hexágono #" + contadorHexagono, listaPuntos);
-        asignarValores(event);
     }
     
     @FXML
     private void crearHeptagono(ActionEvent event) {
+        boolean pasoValidacion = validarNumeros();
+        
+        if(pasoValidacion == true){
+            
+        }
         
         listaPuntos = new LinkedList<>();
         int r = 40;
@@ -619,7 +662,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void guardarXML(ActionEvent event) {
 
-        boolean t = ManejadorArchivos.guardarFiguras(mapTaller2);
+        boolean t = ManejadorArchivos.guardarFiguras(mapTaller2,listaFigurasCreadas);
         if (t == true ){
             System.out.println("Se guardó");
         }else{
@@ -629,7 +672,8 @@ public class FXMLDocumentController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
+        listaFigurasCreadas = new LinkedList<>();
         g = lienzo.getGraphicsContext2D();
 
         double alto = lienzo.getHeight();

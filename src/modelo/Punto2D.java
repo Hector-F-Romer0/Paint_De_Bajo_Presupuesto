@@ -5,10 +5,15 @@
  */
 package modelo;
 
+
 /**
- *
- * @author andres.aristizabal_m
- */
+* Clase encargada de guardar las coordenadas de un punto en ámbito 2D.
+* @author juliana.loaiza@uao.edu.co Juliana Loaiza Mejia Código 2205498
+* @author hector_fabio.romero@uao.edu.co Hector Fabio Romero Bocanegra Código 2205024
+* @author andres.aristizabal_m@uao.edu.co Andrés Felipe Aristizabal Miranda Código 2205296
+* @date 22 marzo 2022
+* @version 1.0
+*/
 public class Punto2D {
     
     private double X;

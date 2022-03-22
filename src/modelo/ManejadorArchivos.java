@@ -16,18 +16,23 @@ import org.jdom2.output.XMLOutputter;
  * @author andres.aristizabal_m
  */
 public class ManejadorArchivos {
-    public static boolean guardarFiguras(HashMap<String, LinkedList<Punto2D>> mp){
+    public static boolean guardarFiguras(HashMap<String, LinkedList<Punto2D>> mp,LinkedList<Figura> listaFigurasCreadas){
         boolean t = false;
         //Hay elementos y atributos, Elements - Atribs
         Element root = new Element("FigurasGeometricas");
         Document document = new Document(root);
         
         Iterator<Map.Entry<String, LinkedList<Punto2D>>> entries = mp.entrySet().iterator();
+        int j= listaFigurasCreadas.size();
+        int k = 1;
         
         while (entries.hasNext()) {
 		Map.Entry<String, LinkedList<Punto2D>> entry = entries.next();
                 Element fg = new Element("FiguraGeometrica");
                 fg.setAttribute("nombreFigura", entry.getKey());
+                fg.setAttribute("colorRelleno",String.valueOf(listaFigurasCreadas.get(j-k).getColorRelleno()));
+                fg.setAttribute("colorBorde", String.valueOf(listaFigurasCreadas.get(j-k).getColorBorde()));
+                fg.setAttribute("grosor", String.valueOf(listaFigurasCreadas.get(j-k).getGrosor()));
 //                System.out.println(entry.getKey());
                 LinkedList<Punto2D> listaP = entry.getValue();
                 for (int i = 0; i < listaP.size(); i++) {                   
@@ -40,7 +45,8 @@ public class ManejadorArchivos {
                 }
                 document.getRootElement().addContent(fg);
                 t = true;
-//                    System.out.println("Puntos "+get.toString()+"\n");           		
+//                    System.out.println("Puntos "+get.toString()+"\n"); 
+                k++;
 	}
         
         try{

@@ -1,49 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FigurasGeometricas>
-  <FiguraGeometrica nombreFigura="Estrella de 5 puntas #2" colorRelleno="0x1a4d4dff" colorBorde="0xffff99ff" grosor="8.0">
-    <Punto0 X="425.0" Y="290.0" />
-    <Punto1 X="403.0" Y="359.0" />
-    <Punto2 X="330.0" Y="359.0" />
-    <Punto3 X="389.0" Y="402.0" />
-    <Punto4 X="366.0" Y="471.0" />
-    <Punto5 X="425.0" Y="428.0" />
-    <Punto6 X="484.0" Y="471.0" />
-    <Punto7 X="461.0" Y="402.0" />
-    <Punto8 X="520.0" Y="359.0" />
-    <Punto9 X="447.0" Y="359.0" />
+  <FiguraGeometrica nombreFigura="Estrella 5 puntas 1" colorRelleno="0x003333ff" colorBorde="0xb34d1aff" grosor="16.0">
+    <Punto0 X="232.0" Y="246.12698412698413" />
+    <Punto1 X="245.2279365079365" Y="204.63936507936506" />
+    <Punto2 X="289.1206349206349" Y="204.63936507936506" />
+    <Punto3 X="253.6457142857143" Y="178.7847619047619" />
+    <Punto4 X="267.47492063492064" Y="137.29714285714286" />
+    <Punto5 X="232.0" Y="163.15174603174603" />
+    <Punto6 X="196.52507936507936" Y="137.29714285714286" />
+    <Punto7 X="210.3542857142857" Y="178.7847619047619" />
+    <Punto8 X="174.87936507936507" Y="204.63936507936506" />
+    <Punto9 X="218.7720634920635" Y="204.63936507936506" />
   </FiguraGeometrica>
-  <FiguraGeometrica nombreFigura="Estrella de 5 puntas #1" colorRelleno="0x6680e6ff" colorBorde="0xb3e6e6ff" grosor="3.0">
-    <Punto0 X="125.0" Y="115.0" />
-    <Punto1 X="103.0" Y="184.0" />
-    <Punto2 X="30.0" Y="184.0" />
-    <Punto3 X="89.0" Y="227.0" />
-    <Punto4 X="66.0" Y="296.0" />
-    <Punto5 X="125.0" Y="253.0" />
-    <Punto6 X="184.0" Y="296.0" />
-    <Punto7 X="161.0" Y="227.0" />
-    <Punto8 X="220.0" Y="184.0" />
-    <Punto9 X="147.0" Y="184.0" />
-  </FiguraGeometrica>
-  <FiguraGeometrica nombreFigura="Hexágono #1" colorRelleno="0x80334dff" colorBorde="0xb31a1aff" grosor="10.0">
-    <Punto0 X="530.0" Y="169.0" />
-    <Punto1 X="510.0" Y="203.64101615137753" />
-    <Punto2 X="470.0" Y="203.64101615137756" />
-    <Punto3 X="450.0" Y="169.0" />
-    <Punto4 X="470.0" Y="134.35898384862247" />
-    <Punto5 X="510.0" Y="134.35898384862244" />
-  </FiguraGeometrica>
-  <FiguraGeometrica nombreFigura="Estrella de 6 puntas #1" colorRelleno="0x4d804dff" colorBorde="0x99cc99ff" grosor="1.0">
-    <Punto0 X="249.0" Y="434.0" />
-    <Punto1 X="269.3" Y="399.0" />
-    <Punto2 X="309.9" Y="399.0" />
-    <Punto3 X="289.6" Y="364.0" />
-    <Punto4 X="309.9" Y="329.0" />
-    <Punto5 X="269.3" Y="329.0" />
-    <Punto6 X="249.0" Y="294.0" />
-    <Punto7 X="228.7" Y="329.0" />
-    <Punto8 X="188.1" Y="329.0" />
-    <Punto9 X="208.4" Y="364.0" />
-    <Punto10 X="188.1" Y="399.0" />
-    <Punto11 X="228.7" Y="399.0" />
+  <FiguraGeometrica nombreFigura="Estrella 5 puntas 2" colorRelleno="0x8099ffff" colorBorde="0xe6804dff" grosor="48.0">
+    <Punto0 X="271.0" Y="411.73809523809524" />
+    <Punto1 X="275.122380952381" Y="398.80880952380954" />
+    <Punto2 X="288.80119047619047" Y="398.80880952380954" />
+    <Punto3 X="277.74571428571426" Y="390.75142857142856" />
+    <Punto4 X="282.0554761904762" Y="377.82214285714286" />
+    <Punto5 X="271.0" Y="385.8795238095238" />
+    <Punto6 X="259.9445238095238" Y="377.82214285714286" />
+    <Punto7 X="264.25428571428574" Y="390.75142857142856" />
+    <Punto8 X="253.19880952380953" Y="398.80880952380954" />
+    <Punto9 X="266.877619047619" Y="398.80880952380954" />
   </FiguraGeometrica>
 </FigurasGeometricas>

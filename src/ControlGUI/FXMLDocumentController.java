@@ -21,6 +21,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
@@ -49,8 +50,7 @@ public class FXMLDocumentController implements Initializable {
     double coorY;
     
     FileChooser fileChooser = new FileChooser();
-    
-    
+       
     int contadorEstrella;
     int contadorEstrella2;
     int contadorHexagono;
@@ -97,36 +97,31 @@ public class FXMLDocumentController implements Initializable {
     private Label labelAviso;
     
     @FXML
+    private Label labelTamanoValue;
+    
+    @FXML
+    private Label labelGrosorValue;
+    
+    @FXML
+    private Slider deslizadorTamano;
+    
+    @FXML
+    private Slider deslizadorGrosor;
+    
+    @FXML
+    private void agregarTamanoyGrosor(MouseEvent event){
+        
+        labelTamanoValue.setText(String.valueOf(Math.round(deslizadorTamano.getValue())));
+        labelGrosorValue.setText(String.valueOf(Math.round(deslizadorGrosor.getValue())));
+    }
+    
+    @FXML
     private void agregarFiguras(){
         Color colorRelleno = this.colorRelleno.getValue();
         Color colorBorde = this.colorBorde.getValue();
         Double grosor = Double.parseDouble(campoGrosor.getText());
-        Figura fig = new Figura(colorRelleno,colorBorde,grosor);
-        listaFigurasCreadas.add(fig);
-    }
-    
-    
-    private boolean validarNumeros(){
-        
-        boolean pasoValidacion;
-        
-        try {
-            double r = Double.parseDouble(campoTamano.getText());
-            double grosor = Double.parseDouble(campoGrosor.getText());
-            
-            if(r>0 && grosor>0){
-                pasoValidacion= true;    
-            }else{
-                labelAviso.setText("Los valores ingresados deben ser positivos.");
-                pasoValidacion = false;
-            }
-            
-        } catch (Exception e) {
-            labelAviso.setText("Los valores deben ser númericos.");
-            pasoValidacion= false;
-        }
-        
-        return pasoValidacion;  
+//        Figura fig = new Figura(colorRelleno,colorBorde,grosor);
+//        listaFigurasCreadas.add(fig);
     }
     
     /**
@@ -135,12 +130,10 @@ public class FXMLDocumentController implements Initializable {
     */
     @FXML
     private void crearEstrella(ActionEvent event) {
-        
-        boolean pasoValidacion = validarNumeros();
-        
-        if(pasoValidacion == true){
+       
+            
             listaPuntos = new LinkedList<>();
-            double r = Double.parseDouble(campoTamano.getText()) * -1;       
+            double r = deslizadorTamano.getValue();       
             double h = coorX;
             double k = coorY;
 
@@ -186,26 +179,23 @@ public class FXMLDocumentController implements Initializable {
             g.setStroke(colorBorde.getValue());
             g.setFill(colorRelleno.getValue());
             g.fillPolygon(x1, y1, 10);
-            g.setLineWidth(Double.parseDouble(campoGrosor.getText()));
-            agregarFiguras();
+            g.setLineWidth(deslizadorGrosor.getValue());
+            
+            contadorEstrella ++;
+            
+            Figura fg = new Figura("Estrella 5 puntas " + contadorEstrella,colorRelleno.getValue(), colorBorde.getValue(), Math.round(deslizadorGrosor.getValue()), listaPuntos);
+            listaFigurasCreadas.add(fg);
             
             g.strokePolygon(x1, y1, 10);
 
-            contadorEstrella ++;
-            mapTaller2.put("Estrella de 5 puntas #" + contadorEstrella, listaPuntos);
             asignarValores(event);
             
-            System.out.println(listaFigurasCreadas.toString());
-        }
-        
+            System.out.println(listaFigurasCreadas.toString());    
     }
     
     @FXML
     private void crearEstrella2(ActionEvent event) {
-        
-        boolean pasoValidacion = validarNumeros();
-        
-        if(pasoValidacion == true){
+       
             listaPuntos = new LinkedList<>();
             int r = 70;
             g.setStroke(colorRelleno.getValue());
@@ -265,16 +255,12 @@ public class FXMLDocumentController implements Initializable {
 
             contadorEstrella2 ++;
             mapTaller2.put("Estrella de 6 puntas #" + contadorEstrella2, listaPuntos);
-            asignarValores(event);
-        } 
+            asignarValores(event);         
     }
     
     @FXML
     private void crearHexagono(ActionEvent event) {
-        
-        boolean pasoValidacion = validarNumeros();
-        
-        if(pasoValidacion == true){
+
             listaPuntos = new LinkedList<>();
             int r = 40;
             g.setStroke(colorRelleno.getValue());
@@ -311,20 +297,12 @@ public class FXMLDocumentController implements Initializable {
             
             contadorHexagono ++;
             mapTaller2.put("Hexágono #" + contadorHexagono, listaPuntos);
-            asignarValores(event);
-        }
-        
-        
+            asignarValores(event);     
     }
     
     @FXML
     private void crearHeptagono(ActionEvent event) {
-        boolean pasoValidacion = validarNumeros();
-        
-        if(pasoValidacion == true){
-            
-        }
-        
+
         listaPuntos = new LinkedList<>();
         int r = 40;
         g.setStroke(colorRelleno.getValue());
@@ -639,9 +617,6 @@ public class FXMLDocumentController implements Initializable {
     private void borrarLienzo(ActionEvent event) {
         
         g.clearRect(0, 0, lienzo.getWidth(), lienzo.getHeight());
-        g.setStroke(Color.BLACK);
-        g.setLineWidth(3);  
-        g.strokeRect(0, 0, lienzo.getWidth(), lienzo.getHeight());
     }
     
     private void asignarValores(ActionEvent event) {
@@ -662,7 +637,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void guardarXML(ActionEvent event) {
 
-        boolean t = ManejadorArchivos.guardarFiguras(mapTaller2,listaFigurasCreadas);
+        boolean t = ManejadorArchivos.guardarFiguras(listaFigurasCreadas);
         if (t == true ){
             System.out.println("Se guardó");
         }else{
@@ -678,10 +653,6 @@ public class FXMLDocumentController implements Initializable {
 
         double alto = lienzo.getHeight();
         double largo = lienzo.getWidth();
-
-        g.setStroke(Color.BLACK);
-        g.setLineWidth(3);  
-        g.strokeRect(0, 0, largo, alto);  
         
         mapTaller2 = new HashMap<>();
         contadorEstrella = 0;

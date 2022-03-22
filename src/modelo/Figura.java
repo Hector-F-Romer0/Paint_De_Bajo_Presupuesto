@@ -5,6 +5,8 @@
  */
 package modelo;
 
+import modelo.Punto2D;
+import java.util.LinkedList;
 import javafx.scene.paint.Color;
 
 /**
@@ -12,16 +14,33 @@ import javafx.scene.paint.Color;
  * @author Hector Fabio Romero
  */
 public class Figura {
+    
+    String nombreFigura;
     Color colorRelleno;
     Color colorBorde;
     double grosor;
+    LinkedList<Punto2D> listaPuntos;
 
-    public Figura(Color colorRelleno, Color colorBorde, double grosor) {
+    public Figura(String nombreFigura, Color colorRelleno, Color colorBorde, double grosor, LinkedList<Punto2D> listaPuntos) {
+        this.nombreFigura = nombreFigura;
         this.colorRelleno = colorRelleno;
         this.colorBorde = colorBorde;
         this.grosor = grosor;
+        this.listaPuntos = listaPuntos;
+    }
+
+
+    public Figura() {
     }
     
+    public String getNombreFigura() {
+        return nombreFigura;
+    }
+
+    public void setNombreFigura(String nombreFigura) {
+        this.nombreFigura = nombreFigura;
+    }
+
     public Color getColorRelleno() {
         return colorRelleno;
     }
@@ -46,10 +65,16 @@ public class Figura {
         this.grosor = grosor;
     }
 
+    public LinkedList<Punto2D> getListaPuntos() {
+        return listaPuntos;
+    }
+
+    public void setListaPuntos(LinkedList<Punto2D> listaPuntos) {
+        this.listaPuntos = listaPuntos;
+    }
+
     @Override
     public String toString() {
-        return "Figura{" + "colorRelleno=" + colorRelleno + ", colorBorde=" + colorBorde + ", grosor=" + grosor + '}';
-    }
-    
-    
+        return "Figura{" + "nombreFigura=" + nombreFigura + ", colorRelleno=" + colorRelleno + ", colorBorde=" + colorBorde + ", grosor=" + grosor + ", listaPuntos=" + listaPuntos + '}';
+    }   
 }

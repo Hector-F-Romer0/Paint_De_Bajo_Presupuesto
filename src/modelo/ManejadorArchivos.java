@@ -6,10 +6,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.jdom2.Document;
 import org.jdom2.Element;
+import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
@@ -63,7 +65,28 @@ public class ManejadorArchivos {
 
     public static boolean leerFiguras(){
         boolean t = false;
+        int i = 0;
         try{
+            SAXBuilder builder = new SAXBuilder();
+             Document doc = builder.build(new File("figurasG.xml"));
+             
+             Element rootNode = doc.getRootElement();
+             List<Element> list = rootNode.getChildren("FiguraGeometrica");
+             
+             for (Element target : list) {
+                String nombreFigura = target.getAttributeValue("nombreFigura");
+//                Color colorRelleno = target.getAttribute("colorRelleno");
+                double grosor = Double.parseDouble(target.getAttributeValue("grosor"));
+                System.out.println("Nombre: " + nombreFigura + " Grosor: " + grosor);
+                
+                Punto2D punto +i = new Punto2D();
+                
+                LinkedList<Punto2D> listaPuntos = new LinkedList<>();
+                List<Element> listPuntos = rootNode.getChildren("FiguraGeometrica");
+                
+                
+             }
+             
 //            JDOMFactory documentBuilder = new         
 //            File archivo = new File("figurasG.xml");
 //            Document documento = documentBuilder.parse(archivo);

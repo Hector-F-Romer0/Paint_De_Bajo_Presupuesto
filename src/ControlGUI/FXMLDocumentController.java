@@ -8,7 +8,6 @@ package ControlGUI;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
@@ -63,7 +62,6 @@ public class FXMLDocumentController implements Initializable {
     int contadorCurva;
     
     LinkedList<Punto2D> listaPuntos;
-    HashMap<String, LinkedList<Punto2D>> mapTaller2;
     LinkedList<Figura> listaFigurasCreadas;
     
     @FXML
@@ -115,197 +113,177 @@ public class FXMLDocumentController implements Initializable {
         labelGrosorValue.setText(String.valueOf(Math.round(deslizadorGrosor.getValue())));
     }
     
-    @FXML
-    private void agregarFiguras(){
-        Color colorRelleno = this.colorRelleno.getValue();
-        Color colorBorde = this.colorBorde.getValue();
-        Double grosor = Double.parseDouble(campoGrosor.getText());
-//        Figura fig = new Figura(colorRelleno,colorBorde,grosor);
-//        listaFigurasCreadas.add(fig);
-    }
-    
     /**
     * Crea una figura geométrica de cinco puntos con forma de estrella de cinco puntas.
     * @param event evento de tipo ActionEvent que desencadenará la función del método.
     */
     @FXML
     private void crearEstrella(ActionEvent event) {
-       
-            
-            listaPuntos = new LinkedList<>();
-            double r = deslizadorTamano.getValue();       
-            double h = coorX;
-            double k = coorY;
+                  
+        listaPuntos = new LinkedList<>();
+        double r = deslizadorTamano.getValue();       
+        double h = coorX;
+        double k = coorY;
 
-            x1 = new double[10];
-            y1 = new double[10];
+        x1 = new double[10];
+        y1 = new double[10];
 
-            x1[0] = h;
-            y1[0] = k+r;
+        x1[0] = h;
+        y1[0] = k+r;
 
-            x1[1] = (0.22*r) + h;
-            y1[1] = (0.31*r) + k;
+        x1[1] = (0.22*r) + h;
+        y1[1] = (0.31*r) + k;
 
-            x1[2] = (0.95*r) + h;
-            y1[2] = (0.31*r) + k;
+        x1[2] = (0.95*r) + h;
+        y1[2] = (0.31*r) + k;
 
-            x1[3] = (0.36*r) + h;
-            y1[3] = (-0.12*r) + k;
+        x1[3] = (0.36*r) + h;
+        y1[3] = (-0.12*r) + k;
 
-            x1[4] = (0.59*r) + h;
-            y1[4] = (-0.81*r) + k;
+        x1[4] = (0.59*r) + h;
+        y1[4] = (-0.81*r) + k;
 
-            x1[5] = h;
-            y1[5] = (-0.38*r) + k;
+        x1[5] = h;
+        y1[5] = (-0.38*r) + k;
 
-            x1[6] = (-0.59*r) + h;
-            y1[6] = (-0.81*r) + k;
+        x1[6] = (-0.59*r) + h;
+        y1[6] = (-0.81*r) + k;
 
-            x1[7] = (-0.36*r) + h;
-            y1[7] = (-0.12*r) + k;
+        x1[7] = (-0.36*r) + h;
+        y1[7] = (-0.12*r) + k;
 
-            x1[8] = (-0.95*r) + h;
-            y1[8] = (0.31*r) + k;
+        x1[8] = (-0.95*r) + h;
+        y1[8] = (0.31*r) + k;
 
-            x1[9] = (-0.22*r) + h;
-            y1[9] = (0.31*r) + k;
+        x1[9] = (-0.22*r) + h;
+        y1[9] = (0.31*r) + k;
 
-            for (int i = 0; i < x1.length; i++) {
-                Punto2D punto = new Punto2D(x1[i], y1[i]);
-                listaPuntos.add(punto);
-                System.out.println("Coordenada: " + i + "x: " + x1[i] + "y: " + y1[i]);
-            }  
-            
-            g.setStroke(colorBorde.getValue());
-            g.setFill(colorRelleno.getValue());
-            g.fillPolygon(x1, y1, 10);
-            g.setLineWidth(deslizadorGrosor.getValue());
-            
-            contadorEstrella ++;
-            
-            Figura fg = new Figura("Estrella 5 puntas " + contadorEstrella,colorRelleno.getValue(), colorBorde.getValue(), Math.round(deslizadorGrosor.getValue()), listaPuntos);
-            listaFigurasCreadas.add(fg);
-            
-            g.strokePolygon(x1, y1, 10);
+        for (int i = 0; i < x1.length; i++) {
+            Punto2D punto = new Punto2D(x1[i], y1[i]);
+            listaPuntos.add(punto);
+            System.out.println("Coordenada: " + i + "x: " + x1[i] + "y: " + y1[i]);
+        }  
+        g.setLineWidth(deslizadorGrosor.getValue());
+        g.setStroke(colorBorde.getValue());
+        g.strokePolygon(x1, y1, 10);
+        g.setFill(colorRelleno.getValue());
+        g.fillPolygon(x1, y1, 10);
+        
+        contadorEstrella ++;
 
-            asignarValores(event);
-            
-            System.out.println(listaFigurasCreadas.toString());    
+        Figura fg = new Figura("Estrella 5 puntas " + contadorEstrella, colorRelleno.getValue(), colorBorde.getValue(), Math.round(deslizadorGrosor.getValue()), listaPuntos);
+        listaFigurasCreadas.add(fg);
     }
     
     @FXML
     private void crearEstrella2(ActionEvent event) {
        
-            listaPuntos = new LinkedList<>();
-            int r = 70;
-            g.setStroke(colorRelleno.getValue());
-            double h = coorX;
-            double k = coorY;
-            x1 = new double[12];
-            y1 = new double[12];
+        listaPuntos = new LinkedList<>();
+        double r = deslizadorTamano.getValue();  
+        double h = coorX;
+        double k = coorY;
+        x1 = new double[12];
+        y1 = new double[12];
 
-            x1[0] = h;
-            y1[0] = r + k;
+        x1[0] = h;
+        y1[0] = r + k;
 
-            x1[1] = (0.29*r) + h;
-            y1[1] = (0.5*r) + k;
+        x1[1] = (0.29*r) + h;
+        y1[1] = (0.5*r) + k;
 
-            x1[2] = (0.87*r) + h;
-            y1[2] = (0.5*r) + k;
+        x1[2] = (0.87*r) + h;
+        y1[2] = (0.5*r) + k;
 
-            x1[3] = (0.58*r) + h;
-            y1[3] = k;
+        x1[3] = (0.58*r) + h;
+        y1[3] = k;
 
-            x1[4] = (0.87*r) + h;
-            y1[4] = -(0.5*r) + k;
+        x1[4] = (0.87*r) + h;
+        y1[4] = -(0.5*r) + k;
 
-            x1[5] = (0.29*r) + h;
-            y1[5] = -(0.5*r) + k;
+        x1[5] = (0.29*r) + h;
+        y1[5] = -(0.5*r) + k;
 
-            x1[6] = h;
-            y1[6] = -r + k;
+        x1[6] = h;
+        y1[6] = -r + k;
 
-            x1[7] = -(0.29*r) + h;
-            y1[7] = -(0.5*r) + k;
+        x1[7] = -(0.29*r) + h;
+        y1[7] = -(0.5*r) + k;
 
-            x1[8] = -(0.87*r) + h;
-            y1[8] = -(0.5*r) + k;
+        x1[8] = -(0.87*r) + h;
+        y1[8] = -(0.5*r) + k;
 
-            x1[9] = -(0.58*r) + h;
-            y1[9] = k;
+        x1[9] = -(0.58*r) + h;
+        y1[9] = k;
 
-            x1[10] = -(0.87*r) + h;
-            y1[10] = (0.5*r) + k;
+        x1[10] = -(0.87*r) + h;
+        y1[10] = (0.5*r) + k;
 
-            x1[11] = -(0.29*r) + h;
-            y1[11] = (0.5*r) + k;
+        x1[11] = -(0.29*r) + h;
+        y1[11] = (0.5*r) + k;
 
-            for (int i = 0; i < x1.length; i++) {
-                Punto2D punto = new Punto2D(x1[i], y1[i]);
-                listaPuntos.addLast(punto);
-                System.out.println("Coordenada: " + i + "x: " + x1[i] + "y: " + y1[i]);
-            }
-            g.setStroke(colorBorde.getValue());
-            g.setFill(colorRelleno.getValue());
-            g.fillPolygon(x1, y1, 12);
-            g.setLineWidth(Double.parseDouble(campoGrosor.getText()));
-            agregarFiguras();
-            
-            g.strokePolygon(x1, y1,12);
+        for (int i = 0; i < x1.length; i++) {
+            Punto2D punto = new Punto2D(x1[i], y1[i]);
+            listaPuntos.addLast(punto);
+            System.out.println("Coordenada: " + i + "x: " + x1[i] + "y: " + y1[i]);
+        }
+        g.setLineWidth(deslizadorGrosor.getValue());
+        g.setStroke(colorBorde.getValue());
+        g.strokePolygon(x1, y1, 12);
+        g.setFill(colorRelleno.getValue());
+        g.fillPolygon(x1, y1, 12);
 
-            contadorEstrella2 ++;
-            mapTaller2.put("Estrella de 6 puntas #" + contadorEstrella2, listaPuntos);
-            asignarValores(event);         
+        contadorEstrella2 ++;
+
+        Figura fg = new Figura("Estrella 6 puntas " + contadorEstrella2, colorRelleno.getValue(), colorBorde.getValue(), Math.round(deslizadorGrosor.getValue()), listaPuntos);
+        listaFigurasCreadas.add(fg);        
     }
     
     @FXML
     private void crearHexagono(ActionEvent event) {
 
-            listaPuntos = new LinkedList<>();
-            int r = 40;
-            g.setStroke(colorRelleno.getValue());
-            int numLados = 6;
-            double angulo = (2 * Math.PI)/ numLados;
+        listaPuntos = new LinkedList<>();
+        double r = deslizadorTamano.getValue(); 
+        int numLados = 6;
+        double angulo = (2 * Math.PI)/ numLados;
 
-            double h = coorX;
-            double k = coorY;
-            x1 = new double[numLados];
-            y1 = new double[numLados];
-            x1[0] = h + r;
-            y1[0] = k;
+        double h = coorX;
+        double k = coorY;
+        x1 = new double[numLados];
+        y1 = new double[numLados];
+        x1[0] = h + r;
+        y1[0] = k;
 
-            for (int i = numLados - 1; i > 0; i--) {
-                double a = r * Math.sin(angulo * i);
-                double b = r * Math.cos(angulo * i);
+        for (int i = numLados - 1; i > 0; i--) {
+            double a = r * Math.sin(angulo * i);
+            double b = r * Math.cos(angulo * i);
 
-                x1[i] = b + h;
-                y1[i] = a + k;
-            }
+            x1[i] = b + h;
+            y1[i] = a + k;
+        }
 
-            Punto2D puntoInicial = new Punto2D(x1[0], y1[0]);
-            listaPuntos.add(puntoInicial);
-            for (int i = 1; i < x1.length; i++) {
-                Punto2D punto = new Punto2D(x1[i], y1[i]);
-                listaPuntos.addLast(punto);
-            }
-            g.setStroke(colorBorde.getValue());
-            g.setFill(colorRelleno.getValue());
-            g.fillPolygon(x1, y1, numLados);
-            g.setLineWidth(Double.parseDouble(campoGrosor.getText()));
-            agregarFiguras();
-            g.strokePolygon(x1, y1, numLados);
-            
-            contadorHexagono ++;
-            mapTaller2.put("Hexágono #" + contadorHexagono, listaPuntos);
-            asignarValores(event);     
+        Punto2D puntoInicial = new Punto2D(x1[0], y1[0]);
+        listaPuntos.add(puntoInicial);
+        for (int i = 1; i < x1.length; i++) {
+            Punto2D punto = new Punto2D(x1[i], y1[i]);
+            listaPuntos.addLast(punto);
+        }
+        g.setLineWidth(deslizadorGrosor.getValue());
+        g.setStroke(colorBorde.getValue());
+        g.strokePolygon(x1, y1, numLados);
+        g.setFill(colorRelleno.getValue());
+        g.fillPolygon(x1, y1, numLados);       
+
+        contadorHexagono ++;
+
+        Figura fg = new Figura("Hexágono " + contadorHexagono, colorRelleno.getValue(), colorBorde.getValue(), Math.round(deslizadorGrosor.getValue()), listaPuntos);
+        listaFigurasCreadas.add(fg);
     }
     
     @FXML
     private void crearHeptagono(ActionEvent event) {
 
         listaPuntos = new LinkedList<>();
-        int r = 40;
-        g.setStroke(colorRelleno.getValue());
+        double r = deslizadorTamano.getValue(); 
         int numLados = 7;
         double angulo = (2 * Math.PI)/ numLados;
         
@@ -330,20 +308,24 @@ public class FXMLDocumentController implements Initializable {
             Punto2D punto = new Punto2D(x1[i], y1[i]);
             listaPuntos.addLast(punto);
         }
-        g.setLineWidth(3);
+        g.setLineWidth(deslizadorGrosor.getValue());
+        g.setStroke(colorBorde.getValue());
         g.strokePolygon(x1, y1, numLados);
+        g.setFill(colorRelleno.getValue());
+        g.fillPolygon(x1, y1, numLados);  
         
+            
         contadorHeptagono ++;
-        mapTaller2.put("Heptágono #" + contadorHeptagono, listaPuntos);
-        asignarValores(event);
+            
+        Figura fg = new Figura("Heptágono " + contadorHeptagono, colorRelleno.getValue(), colorBorde.getValue(), Math.round(deslizadorGrosor.getValue()), listaPuntos);
+        listaFigurasCreadas.add(fg);
     }
    
     @FXML
     private void crearOctagono(ActionEvent event) {
     
         listaPuntos = new LinkedList<>();
-        int r = 40;
-        g.setStroke(colorRelleno.getValue());
+        double r = deslizadorTamano.getValue(); 
         int numLados = 8;
         double angulo = (2 * Math.PI)/ numLados;
         
@@ -368,20 +350,23 @@ public class FXMLDocumentController implements Initializable {
             Punto2D punto = new Punto2D(x1[i], y1[i]);
             listaPuntos.addLast(punto);
         }
-        g.setLineWidth(3);
+        g.setLineWidth(deslizadorGrosor.getValue());
+        g.setStroke(colorBorde.getValue());
         g.strokePolygon(x1, y1, numLados);
-        
+        g.setFill(colorRelleno.getValue());
+        g.fillPolygon(x1, y1, numLados);  
+            
         contadorOctagono ++;
-        mapTaller2.put("Octágono #" + contadorOctagono, listaPuntos);
-        asignarValores(event);
+            
+        Figura fg = new Figura("Octágono " + contadorOctagono, colorRelleno.getValue(), colorBorde.getValue(), Math.round(deslizadorGrosor.getValue()), listaPuntos);
+        listaFigurasCreadas.add(fg);
     }
     
     @FXML
     private void crearDecagono(ActionEvent event) {
     
         listaPuntos = new LinkedList<>();
-        int r = 40;
-        g.setStroke(colorRelleno.getValue());
+        double r = deslizadorTamano.getValue(); 
         int numLados = 10;
         double angulo = (2 * Math.PI)/ numLados;
         
@@ -406,19 +391,23 @@ public class FXMLDocumentController implements Initializable {
             Punto2D punto = new Punto2D(x1[i], y1[i]);
             listaPuntos.addLast(punto);
         }
-        g.setLineWidth(3);
+        g.setLineWidth(deslizadorGrosor.getValue());
+        g.setStroke(colorBorde.getValue());
         g.strokePolygon(x1, y1, numLados);
-        
+        g.setFill(colorRelleno.getValue());
+        g.fillPolygon(x1, y1, numLados);  
+            
         contadorDecagono ++;
-        mapTaller2.put("Decágono #" + contadorDecagono, listaPuntos);
-        asignarValores(event);
+            
+        Figura fg = new Figura("Decágono " + contadorDecagono, colorRelleno.getValue(), colorBorde.getValue(), Math.round(deslizadorGrosor.getValue()), listaPuntos);
+        listaFigurasCreadas.add(fg);
     }
     
     @FXML
     private void crearFlecha(ActionEvent event) {
            
         listaPuntos = new LinkedList<>();
-        int r = 100;        
+        double r = deslizadorTamano.getValue();         
         double v = (r/4);
         double w = (r/2);
         double u = (0.03*r);
@@ -453,22 +442,24 @@ public class FXMLDocumentController implements Initializable {
             Punto2D punto = new Punto2D(x1[i], y1[i]);
             listaPuntos.addLast(punto);
             System.out.println("Coordenada: " + i + "x: " + x1[i] + "y: " + y1[i]);
-        }  
-        g.setStroke(colorRelleno.getValue());
-        g.setLineWidth(3);
+        } 
+        g.setLineWidth(deslizadorGrosor.getValue());
+        g.setStroke(colorBorde.getValue());
         g.strokePolygon(x1, y1, 7);
-        
+        g.setFill(colorRelleno.getValue());
+        g.fillPolygon(x1, y1, 7);  
+            
         contadorFlecha ++;
-        mapTaller2.put("Fleha #" + contadorFlecha, listaPuntos);
-        asignarValores(event);
+            
+        Figura fg = new Figura("Flecha " + contadorFlecha, colorRelleno.getValue(), colorBorde.getValue(), Math.round(deslizadorGrosor.getValue()), listaPuntos);
+        listaFigurasCreadas.add(fg);
     }
    
     @FXML
     private void crearCruz(ActionEvent event) {
         
         listaPuntos = new LinkedList<>();
-        int r = 70;
-        g.setStroke(colorRelleno.getValue());
+        double r = deslizadorTamano.getValue(); 
         double v = (0.2*r);
         double w = (0.78*r);
         double h = coorX;
@@ -517,19 +508,23 @@ public class FXMLDocumentController implements Initializable {
             listaPuntos.addLast(punto);
             System.out.println("Coordenada: " + i + "x: " + x1[i] + "y: " + y1[i]);
         }
-        g.setLineWidth(3);
-        g.strokePolygon(x1, y1,12);
-        
+        g.setLineWidth(deslizadorGrosor.getValue());
+        g.setStroke(colorBorde.getValue());
+        g.strokePolygon(x1, y1, 12);
+        g.setFill(colorRelleno.getValue());
+        g.fillPolygon(x1, y1, 12);  
+            
         contadorCruz ++;
-        mapTaller2.put("Cruz #" + contadorCruz, listaPuntos);
-        asignarValores(event);
+            
+        Figura fg = new Figura("Cruz " + contadorCruz, colorRelleno.getValue(), colorBorde.getValue(), Math.round(deslizadorGrosor.getValue()), listaPuntos);
+        listaFigurasCreadas.add(fg);
     }
     
     @FXML
     private void crearPacman(ActionEvent event) {
     
         listaPuntos = new LinkedList<>();
-        int r = 100; 
+        double r = deslizadorTamano.getValue(); 
         g.setStroke(colorRelleno.getValue());
         double x = coorX;
         double y = coorY;
@@ -544,8 +539,6 @@ public class FXMLDocumentController implements Initializable {
         g.strokeArc(x, y, r, r, 60, 270, ArcType.ROUND);
         
         contadorPacman ++;
-        mapTaller2.put("Pacman #" + contadorPacman, listaPuntos);
-        asignarValores(event);
     }
        
     @FXML
@@ -553,8 +546,7 @@ public class FXMLDocumentController implements Initializable {
     
         
     }
-     
-    
+         
     @FXML
     private void guardarCanva(ActionEvent event){
         
@@ -617,22 +609,7 @@ public class FXMLDocumentController implements Initializable {
     private void borrarLienzo(ActionEvent event) {
         
         g.clearRect(0, 0, lienzo.getWidth(), lienzo.getHeight());
-    }
-    
-    private void asignarValores(ActionEvent event) {
-       
-        Iterator<Map.Entry<String, LinkedList<Punto2D>>> entries = mapTaller2.entrySet().iterator();
-        
-        while (entries.hasNext()) {
-            Map.Entry<String, LinkedList<Punto2D>> entry = entries.next();
-            System.out.println(entry.getKey());
-             
-                for (int i = 0; i < entry.getValue().size(); i++) {
-                    Punto2D get = entry.getValue().get(i);  
-                    System.out.println("Puntos "+get.toString()+"\n");
-                }               
-        }
-    }      
+    }    
    
     @FXML
     private void guardarXML(ActionEvent event) {
@@ -645,6 +622,17 @@ public class FXMLDocumentController implements Initializable {
         }       
     }
     
+    @FXML
+    private void leerXML(ActionEvent event) {
+
+        boolean t = ManejadorArchivos.leerFiguras();
+        if (t == true ){
+            System.out.println("Se Leyó");
+        }else{
+            System.out.println("No se leyó");
+        }       
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -654,7 +642,6 @@ public class FXMLDocumentController implements Initializable {
         double alto = lienzo.getHeight();
         double largo = lienzo.getWidth();
         
-        mapTaller2 = new HashMap<>();
         contadorEstrella = 0;
         contadorEstrella2 = 0;
         contadorHexagono = 0;

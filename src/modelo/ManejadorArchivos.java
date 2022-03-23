@@ -1,10 +1,13 @@
 package modelo;
 
+import com.sun.corba.se.spi.presentation.rmi.StubAdapter;
+import java.io.File;
 import java.io.FileWriter;
-import java.util.HashMap;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Map;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.output.Format;
@@ -14,7 +17,7 @@ import org.jdom2.output.XMLOutputter;
 /**
  *
  * @author andres.aristizabal_m
- */
+ */  
 public class ManejadorArchivos {
     public static boolean guardarFiguras(LinkedList<Figura> listaFigurasCreadas){
         boolean t = false;
@@ -56,5 +59,23 @@ public class ManejadorArchivos {
         }
         
         return t;
-    }    
+    }
+
+    public static boolean leerFiguras(){
+        boolean t = false;
+        try{
+//            JDOMFactory documentBuilder = new         
+//            File archivo = new File("figurasG.xml");
+//            Document documento = documentBuilder.parse(archivo);
+          
+
+//            if (t != null){
+//                t = true;
+//            }
+        }catch(Exception e){
+            System.out.println("Error " + e.toString());
+        }
+        
+       return t;
+    }
 }

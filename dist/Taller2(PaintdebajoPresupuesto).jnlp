@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Taller2(PaintdebajoPresupuesto).jar" size="19167" download="eager" />
+    <jar href="Taller2(PaintdebajoPresupuesto).jar" size="19945" download="eager" />
     <jar href="lib\jaxen-1.2.0.jar" size="232455" download="eager" />
     <jar href="lib\jdom-2.0.6.1-contrib.jar" size="166715" download="eager" />
     <jar href="lib\jdom-2.0.6.1-junit.jar" size="508271" download="eager" />

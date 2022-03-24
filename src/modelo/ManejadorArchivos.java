@@ -79,7 +79,7 @@ public class ManejadorArchivos {
                 double grosor = Double.parseDouble(target.getAttributeValue("grosor"));
                 System.out.println("Nombre: " + nombreFigura + " Grosor: " + grosor);
                 
-                Punto2D punto +i = new Punto2D();
+//                Punto2D punto +i = new Punto2D();
                 
                 LinkedList<Punto2D> listaPuntos = new LinkedList<>();
                 List<Element> listPuntos = rootNode.getChildren("FiguraGeometrica");

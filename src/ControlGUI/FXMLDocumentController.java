@@ -8,9 +8,7 @@ package ControlGUI;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
-import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -26,7 +24,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
 import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
@@ -624,14 +621,44 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void leerXML(ActionEvent event) {
-
-        boolean t = ManejadorArchivos.leerFiguras();
-        if (t == true ){
-            System.out.println("Se Leyó");
-        }else{
-            System.out.println("No se leyó");
-        }       
+        
+        LinkedList<Figura> listaFigurasAPintar = ManejadorArchivos.leerArchivoXML();
+        
+        if(!listaFigurasAPintar.isEmpty()){
+            borrarLienzo(event);
+            pintarFigurasCanvas(listaFigurasAPintar);
+        }
+        
+//        boolean t = ManejadorArchivos.leerFiguras();
+//        if (t == true ){
+//            System.out.println("Se Leyó");
+//        }else{
+//            System.out.println("No se leyó");
+//        }       
     }
+    
+    private void pintarFigurasCanvas(LinkedList<Figura> listaFigurasAPintar){
+ 
+        for (Figura figura : listaFigurasAPintar) {
+            LinkedList<Punto2D> listaPuntos = figura.getListaPuntos();
+            
+            double x2[] = new double[listaPuntos.size()];
+            double y2[] = new double[listaPuntos.size()];
+            
+            for (int i = 0; i < listaPuntos.size(); i++) {
+                Punto2D punto = listaPuntos.get(i);
+                x2[i] = punto.getX();
+                y2[i] = punto.getY(); 
+            }
+            
+            g.setLineWidth(figura.getGrosor());
+            g.setStroke(figura.getColorBorde());
+            g.strokePolygon(x2, y2, listaPuntos.size());
+            g.setFill(figura.getColorRelleno());
+            g.fillPolygon(x2, y2, listaPuntos.size());
+        } 
+    }
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

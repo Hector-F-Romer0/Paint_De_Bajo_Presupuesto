@@ -8,9 +8,7 @@ package ControlGUI;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
-import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -18,17 +16,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.ArcType;
 import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
@@ -102,6 +101,36 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Label labelTamano;
 
+    @FXML
+    private Button estrella;
+   
+    @FXML
+    private Button estrella2;
+    
+    @FXML
+    private Button hexagono;
+    
+    @FXML
+    private Button heptagono;
+    
+    @FXML
+    private Button octagono;
+    
+    @FXML
+    private Button decagono;
+    
+    @FXML
+    private Button flecha;
+    
+    @FXML
+    private Button cruz;
+    
+    @FXML
+    private Button pacman;
+    
+    @FXML
+    private ToggleButton curva;
+    
     @FXML
     private Label labelNota;
 
@@ -596,17 +625,45 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void crearCurva(ActionEvent event) {
 
-        listaPuntos = new LinkedList<>();
+        validar.setDisable(true);
+        colorRelleno.setDisable(true);
+        estrella.setDisable(true);
+        estrella2.setDisable(true);
+        hexagono.setDisable(true);
+        heptagono.setDisable(true);
+        octagono.setDisable(true);
+        decagono.setDisable(true);
+        flecha.setDisable(true);
+        cruz.setDisable(true);
+        pacman.setDisable(true);
+        deslizadorTamano.setDisable(true);
         
-        g.beginPath();
-        g.moveTo(600, 400);
-        g.bezierCurveTo(700, 500, 250, 320, 450, 10);
+        if (curva.isSelected() == true){
+            listaPuntos = new LinkedList<>();
         
-        g.setLineWidth(deslizadorGrosor.getValue());
-        g.setStroke(colorBorde.getValue());
-        g.stroke();
-        g.setFill(colorRelleno.getValue());
-        validacion();
+            g.beginPath();
+            g.moveTo(600, 400);
+            g.bezierCurveTo(700, 500, 250, 320, 450, 10);
+
+            g.setLineWidth(deslizadorGrosor.getValue());
+            g.setStroke(colorBorde.getValue());
+            g.stroke();
+            g.setFill(colorRelleno.getValue());
+            validacion();
+        }else{
+            validar.setDisable(false);
+            colorRelleno.setDisable(false);
+            estrella.setDisable(false);
+            estrella2.setDisable(false);
+            hexagono.setDisable(false);
+            heptagono.setDisable(false);
+            octagono.setDisable(false);
+            decagono.setDisable(false);
+            flecha.setDisable(false);
+            cruz.setDisable(false);
+            pacman.setDisable(false);
+            deslizadorTamano.setDisable(false);
+        }
     }
 
     @FXML

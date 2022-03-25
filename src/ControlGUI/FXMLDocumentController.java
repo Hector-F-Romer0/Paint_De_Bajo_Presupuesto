@@ -738,22 +738,44 @@ public class FXMLDocumentController implements Initializable {
     private void guardarXML(ActionEvent event) {
 
         boolean t = ManejadorArchivos.guardarFiguras(listaFigurasCreadas);
-        if (t == true) {
+        if (t == true ){
             System.out.println("Se guardó");
-        } else {
+        }else{
             System.out.println("No se guardó");
-        }
+        }       
     }
-
+    
     @FXML
     private void leerXML(ActionEvent event) {
-
-        boolean t = ManejadorArchivos.leerFiguras();
-        if (t == true) {
-            System.out.println("Se Leyó");
-        } else {
-            System.out.println("No se leyó");
-        }
+        
+        LinkedList<Figura> listaFigurasAPintar = ManejadorArchivos.leerArchivoXML();
+        
+        if(!listaFigurasAPintar.isEmpty()){
+            borrarLienzo(event);
+            pintarFigurasCanvas(listaFigurasAPintar);
+        }   
+    }
+    
+    private void pintarFigurasCanvas(LinkedList<Figura> listaFigurasAPintar){
+ 
+        for (Figura figura : listaFigurasAPintar) {
+            LinkedList<Punto2D> listaPuntos = figura.getListaPuntos();
+            
+            double x2[] = new double[listaPuntos.size()];
+            double y2[] = new double[listaPuntos.size()];
+            
+            for (int i = 0; i < listaPuntos.size(); i++) {
+                Punto2D punto = listaPuntos.get(i);
+                x2[i] = punto.getX();
+                y2[i] = punto.getY(); 
+            }
+            
+            g.setLineWidth(figura.getGrosor());
+            g.setStroke(figura.getColorBorde());
+            g.strokePolygon(x2, y2, listaPuntos.size());
+            g.setFill(figura.getColorRelleno());
+            g.fillPolygon(x2, y2, listaPuntos.size());
+        } 
     }
 
     @Override

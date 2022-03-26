@@ -19,22 +19,22 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="960.0" style="-fx-background-color: #E86252;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControlGUI.FXMLDocumentController">
    <children>
-      <ImageView fx:id="sun_jinwoo" fitHeight="133.0" fitWidth="129.0" layoutX="48.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="gato" fitHeight="133.0" fitWidth="129.0" layoutX="48.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../Downloads/Captura.PNG" />
+            <Image url="@../../../../../../Downloads/WhatsApp%20Image%202022-01-03%20at%2010.04.23%20PM.jpg" />
          </image>
       </ImageView>
       <ColorPicker fx:id="colorRelleno" layoutX="38.0" layoutY="230.0" prefHeight="25.0" prefWidth="140.0" style="-fx-background-color: #F4D35E;" />
       <ColorPicker fx:id="colorBorde" layoutX="39.0" layoutY="283.0" prefHeight="25.0" prefWidth="140.0" style="-fx-background-color: #F4D35E;" />
-      <MenuBar layoutX="-1.0" prefHeight="25.0" prefWidth="993.0" style="-fx-background-color: #EEEBD0;">
+      <MenuBar layoutX="-1.0" prefHeight="25.0" prefWidth="966.0" style="-fx-background-color: #EEEBD0;">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#guardarXML" text="Guardar XML" />
                   <MenuItem mnemonicParsing="false" onAction="#leerXML" text="Cargar XML" />
+                  <MenuItem mnemonicParsing="false" onAction="#guardarCanva" text="Guardar Canvas" />
+              <MenuItem mnemonicParsing="false" onAction="#cargarCanva" text="Cambiar fondo " />
                   <MenuItem mnemonicParsing="false" text="Borrar lienzo" />
-              <MenuItem mnemonicParsing="false" onAction="#cargarCanva" text="Cargar" />
-                  <MenuItem mnemonicParsing="false" onAction="#guardarCanva" text="Guardar" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
@@ -71,7 +71,7 @@
             <Canvas fx:id="lienzo" height="630.0" onMouseClicked="#obtenerCoordenadas" width="745.0" />
          </children>
       </Pane>
-      <Label fx:id="labelTamanoValue" layoutX="164.0" layoutY="575.0" text="1" textFill="#fff47a">
+      <Label fx:id="labelTamanoValue" layoutX="164.0" layoutY="575.0" text="75" textFill="#fff47a">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
@@ -79,8 +79,8 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
-      <Slider fx:id="deslizadorTamano" layoutX="34.0" layoutY="599.0" max="150.0" min="1.0" onMouseReleased="#agregarTamanoyGrosor" style="-fx-background-color: #F4D35E;" value="1.0" />
-      <Slider fx:id="deslizadorGrosor" layoutX="34.0" layoutY="645.0" max="150.0" min="1.0" onMouseReleased="#agregarTamanoyGrosor" style="-fx-background-color: #F4D35E;" value="1.0" />
+      <Slider fx:id="deslizadorTamano" layoutX="34.0" layoutY="599.0" max="150.0" min="1.0" onMouseReleased="#agregarTamanoyGrosor" style="-fx-background-color: #F4D35E;" value="75.0" />
+      <Slider fx:id="deslizadorGrosor" layoutX="34.0" layoutY="645.0" max="30.0" min="1.0" onMouseReleased="#agregarTamanoyGrosor" style="-fx-background-color: #F4D35E;" value="15.0" />
       <CheckBox fx:id="validar" layoutX="38.0" layoutY="185.0" mnemonicParsing="false" onAction="#validarRelleno" prefHeight="17.0" prefWidth="140.0" text="Sin Relleno" />
       <Label fx:id="labelNota" layoutX="38.0" layoutY="509.0" prefHeight="62.0" prefWidth="140.0" text="Nota: Para la curva se deben seleccionar 4 puntos en el Canvas" textAlignment="CENTER" wrapText="true" />
       <Label fx:id="labelTamano" layoutX="39.0" layoutY="575.0" text="Tamaño de la figura" textFill="#fff47a">
@@ -88,7 +88,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="labelGrosorValue" layoutX="163.0" layoutY="623.0" text="1" textFill="#fff47a">
+      <Label fx:id="labelGrosorValue" layoutX="163.0" layoutY="623.0" text="15" textFill="#fff47a">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -103,7 +103,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <ToggleButton fx:id="curva" layoutX="112.0" layoutY="476.0" mnemonicParsing="false" onAction="#crearCurva" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #EEB61C;" text="Curva" />
+      <ToggleButton fx:id="curva" layoutX="112.0" layoutY="476.0" mnemonicParsing="false" onMouseClicked="#crearCurva" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #EEB61C;" text="Curva" />
    </children>
    <opaqueInsets>
       <Insets />

@@ -7,13 +7,17 @@ package ControlGUI;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -23,13 +27,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import modelo.Figura;
 import modelo.ManejadorArchivos;
@@ -42,7 +46,7 @@ import modelo.Punto2D;
 public class FXMLDocumentController implements Initializable {
 
     private GraphicsContext g;
-
+    
     double x1[];
     double y1[];
 
@@ -63,14 +67,16 @@ public class FXMLDocumentController implements Initializable {
     int contadorCurva;
 
     LinkedList<Punto2D> listaPuntos;
+    double[] curvaPuntosX;
+    double[] curvaPuntosY;
+    int contadorPuntosCurva;
     LinkedList<Figura> listaFigurasCreadas;
-
+    Image fondo;
+    boolean curvaActivada;
+    
     @FXML
     private Canvas lienzo;
-
-    @FXML
-    private Pane panelFiguras;
-
+    
     @FXML
     private CheckBox validar;
 
@@ -85,9 +91,6 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private ColorPicker colorBorde;
-
-    @FXML
-    private ImageView sun_jinwoo;
 
     @FXML
     private TextField campoTamano;
@@ -611,10 +614,10 @@ public class FXMLDocumentController implements Initializable {
 
         g.setLineWidth(deslizadorGrosor.getValue());
         g.setStroke(colorBorde.getValue());
-        g.strokeArc(x, y, r, r, 60, 270, ArcType.ROUND);
+        g.strokeArc(x, y, 2*r, 2*r, 60, 270, ArcType.ROUND);
         g.setFill(colorRelleno.getValue());
         validacion();
-        g.fillArc(x, y, r, r, 60, 270, ArcType.ROUND);
+        g.fillArc(x, y, 2*r, 2*r, 60, 270, ArcType.ROUND);
 
         contadorPacman++;
 
@@ -623,8 +626,8 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void crearCurva(ActionEvent event) {
-
+    private void crearCurva(MouseEvent event) {
+        
         validar.setDisable(true);
         colorRelleno.setDisable(true);
         estrella.setDisable(true);
@@ -639,67 +642,57 @@ public class FXMLDocumentController implements Initializable {
         deslizadorTamano.setDisable(true);
         
         if (curva.isSelected() == true){
+            curvaActivada = true;
             listaPuntos = new LinkedList<>();
-        
-            g.beginPath();
-            g.moveTo(600, 400);
-            g.bezierCurveTo(700, 500, 250, 320, 450, 10);
+                        
+            if (curvaPuntosX[3] >= 0){
+                g.beginPath();
+            
+                g.moveTo(curvaPuntosX[0], curvaPuntosY[0]);
+                g.bezierCurveTo(curvaPuntosX[1], curvaPuntosY[1], curvaPuntosX[2], curvaPuntosY[2], curvaPuntosX[3], curvaPuntosY[3]);
 
-            g.setLineWidth(deslizadorGrosor.getValue());
-            g.setStroke(colorBorde.getValue());
-            g.stroke();
-            g.setFill(colorRelleno.getValue());
-            validacion();
-        }else{
-            validar.setDisable(false);
-            colorRelleno.setDisable(false);
-            estrella.setDisable(false);
-            estrella2.setDisable(false);
-            hexagono.setDisable(false);
-            heptagono.setDisable(false);
-            octagono.setDisable(false);
-            decagono.setDisable(false);
-            flecha.setDisable(false);
-            cruz.setDisable(false);
-            pacman.setDisable(false);
-            deslizadorTamano.setDisable(false);
+                g.setLineWidth(deslizadorGrosor.getValue());
+                g.setStroke(colorBorde.getValue());
+                g.stroke();
+                g.setFill(colorRelleno.getValue());
+                validacion();
+            }
         }
     }
 
     @FXML
     private void guardarCanva(ActionEvent event) {
-
-        // Abre un explorador de archivos para indicar donde se van a guardar los canvas
-        File archivoAGuardar = fileChooser.showSaveDialog(null);
-
-        if (archivoAGuardar != null) {
-            try {
+        
+        final Stage priStage = new Stage();
+        FileChooser fileChooser = new FileChooser();
+        SnapshotParameters sp = new SnapshotParameters();
+        sp.setFill(Color.TRANSPARENT);
+        
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("jpg files (*.jpg)", "*.jpg");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showSaveDialog(priStage);
+        
+        if (file != null){
+            try{
                 WritableImage writableImage = new WritableImage((int) lienzo.getWidth(), (int) lienzo.getHeight());
-                // Toma una instantánea o foto del lienzo en ese momento
-                lienzo.snapshot(null, writableImage);
-                BufferedImage bImage = SwingFXUtils.fromFXImage(writableImage, null);
-//                RenderedImage imagenRenderizada = SwingFXUtils.fromFXImage(writableImage, null);
-                ImageIO.write(bImage, "jpg", archivoAGuardar);
-            } catch (Exception e) {
-                System.out.println("Error al guardar la imagen");
-                System.out.println(e.getMessage());
+                lienzo.snapshot(sp, writableImage);
+                ImageIO.write(SwingFXUtils.fromFXImage(lienzo.snapshot(sp, writableImage), null), "jpg", file);
+            }catch (IOException ex) {
+                Logger.getLogger(GraphicsContext.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else {
-            System.out.println("No se seleccionó archivo");
         }
     }
 
     @FXML
-    private void cargarCanva(ActionEvent event) {
+    private void cargarCanva(ActionEvent event) throws IOException {
 
-        //Ayuda a que solo se pueden seleccionar archivos 'JPG' y que obligatoriamente sean "JPG"
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JPG", "*.jpg"));
-
-        // Creamos un objeto File donde se guardará el archivo que el usuario escoja y abrimos el explorador de archivos
+        fileChooser.getExtensionFilters();
         File archivoSeleccionado = fileChooser.showOpenDialog(null);
-        // Sirve para seleccionar un solo archivo
-
-        // Si se cargó un archivo, será diferente de null
+        
+        BufferedImage buffer = ImageIO.read(archivoSeleccionado);
+        fondo = SwingFXUtils.toFXImage(buffer, null);
+        g.drawImage(fondo, 0, 0, lienzo.getWidth(), lienzo.getHeight());
+       
         if (archivoSeleccionado != null) {
             System.out.println("Se cargó el archivo");
         } else {
@@ -716,10 +709,34 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void obtenerCoordenadas(MouseEvent event) {
-
+              
         coorX = event.getX();
         coorY = event.getY();
         System.out.println("El punto " + coorX + ", " + coorY);
+        
+        if(curvaActivada == true){
+            curvaPuntosX[contadorPuntosCurva] = coorX;
+            curvaPuntosY[contadorPuntosCurva] = coorY;
+            contadorPuntosCurva++;
+        }
+        if(contadorPuntosCurva == 4){
+            crearCurva(event);
+            contadorPuntosCurva = 0;
+            curva.setSelected(false);
+            curvaActivada = false;
+            validar.setDisable(false);
+            colorRelleno.setDisable(false);
+            estrella.setDisable(false);
+            estrella2.setDisable(false);
+            hexagono.setDisable(false);
+            heptagono.setDisable(false);
+            octagono.setDisable(false);
+            decagono.setDisable(false);
+            flecha.setDisable(false);
+            cruz.setDisable(false);
+            pacman.setDisable(false);
+            deslizadorTamano.setDisable(false);
+        }
     }
 
     /**
@@ -780,10 +797,10 @@ public class FXMLDocumentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
         listaFigurasCreadas = new LinkedList<>();
         g = lienzo.getGraphicsContext2D();
-
+        
         double alto = lienzo.getHeight();
         double largo = lienzo.getWidth();
 
@@ -797,6 +814,10 @@ public class FXMLDocumentController implements Initializable {
         contadorCruz = 0;
         contadorPacman = 0;
         contadorCurva = 0;
+        curvaActivada = false;
+        curvaPuntosX = new double[4];
+        curvaPuntosY = new double[4];
+        contadorPuntosCurva = 0;    
     }
 
 }

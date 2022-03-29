@@ -12,17 +12,30 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
+ * Clase encargada inicializar el programa
  *
- * @author andres.aristizabal_m
+ * @author juliana.loaiza@uao.edu.co Juliana Loaiza Mejia Código 2205498
+ * @author hector_fabio.romero@uao.edu.co Hector Fabio Romero Bocanegra Código
+ * 2205024
+ * @author andres.aristizabal_m@uao.edu.co Andrés Felipe Aristizabal Miranda
+ * Código 2205296
+ * @date 22 marzo 2022
+ * @version 1.0
  */
 public class Taller2PaintdebajoPresupuesto extends Application {
-    
+
+    /**
+     * Crea una escena para contener el FXMLDocument con la interfaz
+     *
+     * @param stage contenedor del FXMLDocument
+     */
     @Override
     public void start(Stage stage) throws Exception {
+        stage.setTitle("Paint de bajo presupuesto - Aristizabal, Loaiza & Romero");
         Parent root = FXMLLoader.load(getClass().getResource("/vista/FXMLDocument.fxml"));
-        
+
         Scene scene = new Scene(root);
-        
+
         stage.setScene(scene);
         stage.show();
     }
@@ -33,5 +46,5 @@ public class Taller2PaintdebajoPresupuesto extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<FigurasGeometricas>
-  <FiguraGeometrica nombreFigura="Pacman 1" colorRelleno="0x1a3399ff" colorBorde="0xffcc66ff" grosor="28.0">
-    <Punto0 X="334.0" Y="334.0" />
-    <Punto1 X="424.8730158730159" Y="424.8730158730159" />
-  </FiguraGeometrica>
-</FigurasGeometricas>
